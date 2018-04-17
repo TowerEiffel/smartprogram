@@ -13,58 +13,24 @@ Page({
     userInfo: null,
     userSite: '定位中',
     navList: [{
-      navTitle: '排队取号',
+      navTitle: '预约',
       navIcon: 'iconfont icon-shalou'
     }, {
-      navTitle: '预约订座',
+      navTitle: '点餐',
       navIcon: 'iconfont icon-chuliyuyue'
     }, {
       navTitle: '扫描单号',
       navIcon: 'iconfont icon-erweima'
     }],
-    hotShop: [{
-      shopImg: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      shopName: '青花椒砂锅鱼'
+    notice: [{
+      imgUrl: '../../images/reduce.png',
+      notice: '满100减5，满200减15，满300减15'
     }, {
-      shopImg: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      shopName: '青花椒砂锅鱼'
+      imgUrl: '../../images/new.png',
+      notice: '新用户下单立减10元'
     }, {
-      shopImg: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      shopName: '青花椒砂锅鱼'
-    }, {
-      shopImg: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      shopName: '青花椒砂锅鱼'
-    }, {
-      shopImg: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      shopName: '青花椒砂锅鱼'
-    }, {
-      shopImg: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      shopName: '青花椒砂锅鱼'
-    }],
-    nearShop: [{
-      img: 'https://order-foods-img-1256105536.cos.ap-chengdu.myqcloud.com/金掌勺店面图.png',
-      name: '金掌勺',
-      price: '50',
-      kind: '东北菜',
-      distance: '1.3km',
-      status: '无需排队',
-      grade: 'five-star'
-    }, {
-        img: 'https://order-foods-img-1256105536.cos.ap-chengdu.myqcloud.com/海底捞店面图.png',
-      name: '海底捞',
-      price: '70',
-      kind: '火锅',
-      distance: '2.0km',
-      status: '无需排队',
-      grade: 'four-star'
-    }, {
-        img: 'https://order-foods-img-1256105536.cos.ap-chengdu.myqcloud.com/山西面店面图.png',
-      name: '山西面馆',
-      price: '15',
-      kind: '面食',
-      distance: '3.1km',
-      status: '无需排队',
-      grade: 'four-star'
+      imgUrl: '../../images/msg.png',
+      notice: '凡劳动节当天到店均有好礼相送'
     }],
     imgUrls: ['https://order-foods-img-1256105536.cos.ap-chengdu.myqcloud.com/加盟广告图.png',
       'https://order-foods-img-1256105536.cos.ap-chengdu.myqcloud.com/金掌勺店面图.png', 
