@@ -16,10 +16,27 @@ notice
 	
 
 订单项
-	id orderId goodsId user name price num sumprice 
+	id orderId goodsId goods_type user goods_name price num smalltotal
 
 订单
-	id user totalprice paystatus shopname
+	id user totalprice paystatus shopname payway（支付  支付+代金卷）
 	
 商品种类（码表）
-	id
+	id  name  price  discount type
+
+账户表
+    user num
+账户流水
+    user orderId time num
+
+代金卷（码表）
+    id  num  sall_price
+优惠卷（码表）
+    id num use_num
+减免方式（码表）
+    id num  price
+
+用户表
+    id user name img accountnum  spendnum
+
+
