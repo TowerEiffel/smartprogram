@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * ON 2018/4/19.
  */
 @Entity
-@Table(name = "account", schema = "smart", catalog = "")
+@Table(name = "account")
 public class AccountEntity {
     private long id;
     private long user;

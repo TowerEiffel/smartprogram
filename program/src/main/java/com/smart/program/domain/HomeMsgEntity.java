@@ -12,7 +12,7 @@ import java.sql.Timestamp;
  * ON 2018/4/19.
  */
 @Entity
-@Table(name = "home_msg", schema = "smart", catalog = "")
+@Table(name = "home_msg")
 public class HomeMsgEntity {
     private long id;
     private String name;

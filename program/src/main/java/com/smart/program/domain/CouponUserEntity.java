@@ -9,7 +9,7 @@ import java.sql.Timestamp;
  * ON 2018/4/19.
  */
 @Entity
-@Table(name = "coupon_user", schema = "smart", catalog = "")
+@Table(name = "coupon_user")
 public class CouponUserEntity {
     private long id;
     private long couponId;
