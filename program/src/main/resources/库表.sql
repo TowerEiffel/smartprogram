@@ -1,0 +1,249 @@
+drop table if exists home_config;
+
+/*==============================================================*/
+/* Table: home_config                                           */
+/*==============================================================*/
+create table home_config
+(
+   id                   bigint(20) not null comment '主键',
+   area_name            varchar(50) not null comment '区域名',
+   area_tag             varchar(10) not null comment '区域标识',
+   area_hight           int not null comment '区域高度',
+   area_sort            int not null comment '区域顺序',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (id)
+);
+
+
+drop table if exists home_msg;
+
+/*==============================================================*/
+/* Table: home_msg                                              */
+/*==============================================================*/
+create table home_msg
+(
+   id                   bigint(20) not null comment '主键',
+   name                 varchar(50) not null comment '区域名',
+   img_url              varchar(200) not null comment '区域标识',
+   context              varchar(500) not null comment '区域高度',
+   sort                 int not null comment '区域顺序',
+   area_tag             varchar(10) not null comment '顺序',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态'
+);
+
+drop table if exists order_item;
+
+/*==============================================================*/
+/* Table: order_item                                            */
+/*==============================================================*/
+create table order_item
+(
+   item_id              bigint not null comment '主键',
+   order_id             bigint not null comment '订单id',
+   goods_id             bigint not null comment '商品id',
+   goods_type           varchar(50) not null comment '商品类型（例如：中份，微辣）',
+   goods_name           varchar(100) not null comment '商品名称',
+   goods_num            int not null comment '商品数量',
+   goods_price          decimal(2,2) not null comment '商品价格',
+   real_price           decimal(2,2) not null comment '实际价格',
+   subtotal             decimal(2,2) not null comment '小计',
+   order_type           tinyint not null default 0 comment '订单类型（1预约，0店中，2外卖）',
+   pay_time             timestamp comment '支付时间',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (item_id)
+);
+
+
+drop table if exists order_info;
+
+/*==============================================================*/
+/* Table: order_info                                            */
+/*==============================================================*/
+create table order_info
+(
+   order_id             bigint not null comment '主键',
+   user                 bigint comment '用户微信id',
+   totalprice           decimal(2,2) comment '总计',
+   item_id              bigint comment '订单项id',
+   pay_status           tinyint comment '支付状态（0 未支付 1已支付）',
+   pay_way              varchar(100) comment '支付方式（全付，代金卷，微信+优惠卷）',
+   pay_time             timestamp comment '支付时间',
+   table_num            int comment '桌号',
+   memo                 varchar(500) comment '备注',
+   create_time          timestamp default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint comment '版本',
+   data_status          tinyint comment '数据状态',
+   primary key (order_id)
+);
+
+drop table if exists goods;
+
+/*==============================================================*/
+/* Table: goods                                                 */
+/*==============================================================*/
+create table goods
+(
+   goods_id             bigint not null comment '主键',
+   goods_name           varchar(100) not null comment '商品名称',
+   goods_img            varchar(200) not null comment '商品图片',
+   goods_cate           bigint not null comment '商品分类',
+   goods_type           varchar(50) not null default '0' comment '商品类型（0 单品，1 规格）',
+   goods_price          decimal(2,2) not null default 0.0 comment '商品价格',
+   goods_discount       decimal(2,2) not null default 0.0 comment '商品折扣',
+   goods_status         tinyint not null default 0 comment '商品状态（0 在售  1下架）',
+   goods_msg            varchar(500) comment '商品介绍',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null comment '版本',
+   data_status          tinyint not null comment '数据状态',
+   primary key (goods_id)
+);
+
+drop table if exists goods_cate;
+
+/*==============================================================*/
+/* Table: goods_cate                                            */
+/*==============================================================*/
+create table goods_cate
+(
+   cate_id              bigint not null comment '分类id',
+   cate_icon            varchar(200) comment '图标',
+   cate_name            varchar(100) comment '名称',
+   sort                 int comment '顺序',
+   status               tinyint default 0 comment '使用状态（0 禁用 1启用）',
+   create_time          timestamp default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint comment '版本',
+   data_status          tinyint comment '数据状态',
+   primary key (cate_id)
+);
+
+drop table if exists goods_property;
+
+/*==============================================================*/
+/* Table: goods_property                                        */
+/*==============================================================*/
+create table goods_property
+(
+   id                   bigint not null comment '主键',
+   goods_id             bigint not null comment '商品主键',
+   property_name        varchar(100) not null comment '属性名称（规格，大小，温度等）',
+   property_msg         varchar(100) not null comment '属性内容（微辣，小份，加冰）',
+   property_status      tinyint not null default 0 comment '属性状态(0 可用，1不可用)',
+   property_img         varchar(200) comment '属性图',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (id)
+);
+
+drop table if exists account_water;
+
+/*==============================================================*/
+/* Table: account_water                                         */
+/*==============================================================*/
+create table account_water
+(
+   water_id             bigint not null comment '流水id',
+   user                 bigint not null comment '用户',
+   order_id             bigint,
+   water_type           tinyint not null default 0 comment '流水类型(1 充值, 0消费,2代金券)',
+   water_num            decimal(2,2) not null comment '流水数量',
+   wanter_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '流水时间',
+   memo                 varchar(100) comment '备注',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (water_id)
+);
+
+drop table if exists account;
+
+/*==============================================================*/
+/* Table: account                                               */
+/*==============================================================*/
+create table account
+(
+   id                   bigint not null comment '主键',
+   user                 bigint not null comment '用户',
+   account_num          decimal(2,2) not null default 0.00 comment '账户余额',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (id)
+);
+
+
+drop table if exists coupon;
+
+/*==============================================================*/
+/* Table: coupon                                                */
+/*==============================================================*/
+create table coupon
+(
+   id                   bigint not null comment '主键',
+   coupon_num           int not null comment '优惠券数量',
+   coupon_type          tinyint not null default 0 comment '券类型（0优惠券 1代金券）',
+   coupon_img           varchar(200) comment '卷图片',
+   coupon_size          decimal(2,2) not null comment '优惠额度',
+   coupon_condition     decimal(2,2) not null comment '优惠条件',
+   coupon_msg           varchar(500) not null comment '优惠说明',
+   coupon_time          timestamp comment '优惠截止时间',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (id)
+);
+drop table if exists coupon_user;
+
+/*==============================================================*/
+/* Table: coupon_user                                           */
+/*==============================================================*/
+create table coupon_user
+(
+   id                   bigint not null comment '主键',
+   coupon_id            bigint not null comment '券id',
+   user                 bigint not null comment '用户',
+   page_type            tinyint default 0 comment '券类型（0 优惠卷 1代金券）',
+   use_time             timestamp comment '有效时间',
+   used                 tinyint not null default 0 comment '是否可用',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (id)
+);
+
+drop table if exists discount;
+
+/*==============================================================*/
+/* Table: discount                                              */
+/*==============================================================*/
+create table discount
+(
+   id                   bigint not null comment '主键',
+   discount_type        tinyint not null default 0 comment '类型（0 充值 1 付款）',
+   discount_condition   decimal(2,2) not null default 0.00 comment '条件',
+   discount_size        decimal(2,2) not null default 0.00 comment '额度',
+   memo                 varchar(100),
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (id)
+);
+
