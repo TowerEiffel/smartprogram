@@ -1,33 +1,26 @@
 package com.smart.program.response.homepage;
 
-import com.smart.program.domain.banner.BannerEntity;
-import com.smart.program.domain.notice.NoticeEntity;
+import com.smart.program.domain.HomeConfigEntity;
+import com.smart.program.domain.HomeMsgEntity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class HomePageResponse {
+    private String areaName;
+    private String areaTag;
+    private int areaHight;
+    private int areaSort;
+    private List<HomeMsgEntity> msgEntities;
 
-    /**banner信息*/
-    private List<BannerEntity> banners;
-    /**活动提示*/
-    private List<NoticeEntity> notices;
-
-    public HomePageResponse() {
-    }
-
-    public List<BannerEntity> getBanners() {
-        return banners;
-    }
-
-    public void setBanners(List<BannerEntity> banners) {
-        this.banners = banners;
-    }
-
-    public List<NoticeEntity> getNotices() {
-        return notices;
-    }
-
-    public void setNotices(List<NoticeEntity> notices) {
-        this.notices = notices;
+    public HomePageResponse(HomeConfigEntity configEntity, List<HomeMsgEntity> msgEntities){
+        this.areaHight=configEntity.getAreaHight();
+        this.areaName=configEntity.getAreaName();
+        this.areaSort=configEntity.getAreaSort();
+        this.areaTag=configEntity.getAreaTag();
+        this.msgEntities=msgEntities;
     }
 }

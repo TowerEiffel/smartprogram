@@ -2,6 +2,8 @@ package com.smart.program.service.homepage;
 
 import com.smart.program.response.homepage.HomePageResponse;
 
+import java.util.List;
+
 public interface HomePageService {
 
     /**
@@ -9,5 +11,5 @@ public interface HomePageService {
      * @return
      * @throws Exception
      */
-    HomePageResponse queryHomePage() throws Exception;
+    List<HomePageResponse> queryHomePage() throws Exception;
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * 首页
  */
@@ -26,12 +28,12 @@ public class HomePageController {
      * 获取首页信息
      * @return
      */
-    @RequestMapping(path = "/queryHomePage", method = RequestMethod.POST)
-    public ResponseVO<HomePageResponse> queryHomePage() {
-        ResponseVO<HomePageResponse> responseVO = new ResponseVO<>();
+    @RequestMapping(path = "/queryHomePage", method = RequestMethod.GET)
+    public ResponseVO<List<HomePageResponse>> queryHomePage() {
+        ResponseVO<List<HomePageResponse>> responseVO = new ResponseVO<>();
         try {
-            HomePageResponse homePageResponse = homePageService.queryHomePage();
-            responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG, homePageResponse);
+            List<HomePageResponse> responses = homePageService.queryHomePage();
+            responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG, responses);
         } catch (Exception e) {
             log.error("HomePageController queryHomePage Exception -> ", e);
             responseVO.setResult(ErrorConstant.ERROR_CODE, ErrorConstant.ERROR_MSG);
