@@ -1,9 +1,6 @@
 package com.smart.program.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -25,7 +22,7 @@ public class HomeMsgEntity {
     private byte version;
     private byte dataStatus;
 
-    @Basic
+    @Id
     @Column(name = "id")
     public long getId() {
         return id;
@@ -125,39 +122,4 @@ public class HomeMsgEntity {
         this.dataStatus = dataStatus;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        HomeMsgEntity that = (HomeMsgEntity) o;
-
-        if (id != that.id) return false;
-        if (sort != that.sort) return false;
-        if (version != that.version) return false;
-        if (dataStatus != that.dataStatus) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (imgUrl != null ? !imgUrl.equals(that.imgUrl) : that.imgUrl != null) return false;
-        if (context != null ? !context.equals(that.context) : that.context != null) return false;
-        if (areaTag != null ? !areaTag.equals(that.areaTag) : that.areaTag != null) return false;
-        if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
-        if (updateTime != null ? !updateTime.equals(that.updateTime) : that.updateTime != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (imgUrl != null ? imgUrl.hashCode() : 0);
-        result = 31 * result + (context != null ? context.hashCode() : 0);
-        result = 31 * result + sort;
-        result = 31 * result + (areaTag != null ? areaTag.hashCode() : 0);
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + (int) version;
-        result = 31 * result + (int) dataStatus;
-        return result;
-    }
 }

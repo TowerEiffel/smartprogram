@@ -5,9 +5,9 @@ spring:
     hibernate.ddl-auto: none
 
   datasource:
-    url: jdbc:mysql://192.168.0.202:3306/ifuturex_test
+    url: jdbc:mysql://localhost:3306/order_foods
     username: root
-    password: J1r8j0y3.
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   durid:
@@ -34,3 +34,5 @@ spring:
 
 server:
   port: 8080
+  servlet:
+    context-path: /order-foods

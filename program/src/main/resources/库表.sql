@@ -1,3 +1,31 @@
+create table banner
+(
+   banner_id            bigint(20) not null comment '主键',
+   banner_name          varchar(50) not null comment 'banner名称',
+   banner_url           varchar(100) not null comment 'banner图片地址',
+   banner_status        tinyint not null default 0  comment 'banner状态：0-禁用；1-启用',
+   banner_sort          int not null comment '显示顺序',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              int not null comment '版本',
+   data_status          tinyint not null default 1 comment '数据状态:0-删除；1-正常',
+   primary key (banner_id)
+);
+
+create table notice
+(
+   notice_id            bigint(20) not null comment '主键',
+   notice_name          varchar(50) not null comment 'notice名称',
+   notice_url           varchar(100) not null comment 'notice图片地址',
+   notice_status        tinyint not null default 0  comment 'notice状态：0-禁用；1-启用',
+   notice_sort          int not null comment '显示顺序',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              int not null comment '版本',
+   data_status          tinyint not null default 1 comment '数据状态:0-删除；1-正常',
+   primary key (notice_id)
+);
+
 drop table if exists home_config;
 
 /*==============================================================*/

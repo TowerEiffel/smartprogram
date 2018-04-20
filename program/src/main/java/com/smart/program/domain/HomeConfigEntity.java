@@ -111,37 +111,4 @@ public class HomeConfigEntity {
         this.dataStatus = dataStatus;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        HomeConfigEntity that = (HomeConfigEntity) o;
-
-        if (id != that.id) return false;
-        if (areaHight != that.areaHight) return false;
-        if (areaSort != that.areaSort) return false;
-        if (version != that.version) return false;
-        if (dataStatus != that.dataStatus) return false;
-        if (areaName != null ? !areaName.equals(that.areaName) : that.areaName != null) return false;
-        if (areaTag != null ? !areaTag.equals(that.areaTag) : that.areaTag != null) return false;
-        if (createTime != null ? !createTime.equals(that.createTime) : that.createTime != null) return false;
-        if (updateTime != null ? !updateTime.equals(that.updateTime) : that.updateTime != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (areaName != null ? areaName.hashCode() : 0);
-        result = 31 * result + (areaTag != null ? areaTag.hashCode() : 0);
-        result = 31 * result + areaHight;
-        result = 31 * result + areaSort;
-        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
-        result = 31 * result + (updateTime != null ? updateTime.hashCode() : 0);
-        result = 31 * result + (int) version;
-        result = 31 * result + (int) dataStatus;
-        return result;
-    }
 }

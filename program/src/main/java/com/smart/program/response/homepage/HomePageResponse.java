@@ -1,33 +1,33 @@
 package com.smart.program.response.homepage;
 
-import com.smart.program.domain.banner.BannerEntity;
-import com.smart.program.domain.notice.NoticeEntity;
+import com.smart.program.response.banner.BannerResponse;
+import com.smart.program.response.notice.NoticeResponse;
 
 import java.util.List;
 
 public class HomePageResponse {
 
     /**banner信息*/
-    private List<BannerEntity> banners;
+    private List<BannerResponse> banners;
     /**活动提示*/
-    private List<NoticeEntity> notices;
+    private List<NoticeResponse> notices;
 
     public HomePageResponse() {
     }
 
-    public List<BannerEntity> getBanners() {
+    public List<BannerResponse> getBanners() {
         return banners;
     }
 
-    public void setBanners(List<BannerEntity> banners) {
+    public void setBanners(List<BannerResponse> banners) {
         this.banners = banners;
     }
 
-    public List<NoticeEntity> getNotices() {
+    public List<NoticeResponse> getNotices() {
         return notices;
     }
 
-    public void setNotices(List<NoticeEntity> notices) {
+    public void setNotices(List<NoticeResponse> notices) {
         this.notices = notices;
     }
 }

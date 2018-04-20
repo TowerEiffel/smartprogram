@@ -6,7 +6,7 @@
     <session-factory>
         <!-- Database connection settings -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://192.168.0.202:3306/ifuturex_dev</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/order_foods</property>
         <!-- JDBC connection pool (use the built-in) -->
         <!--
         <property name="connection.pool_size">1</property>
@@ -66,6 +66,8 @@
         <mapping class="hello.activeEntity.ActivityTopicEntity"/>
         <mapping class="hello.activeEntity.UserSubjectEntity"/>
         <mapping class="hello.activeEntity.SharePopupEntity"/>
+        <mapping class="com.smart.program.domain.banner.BannerEntity$BannerEntity"/>
+        <mapping class="com.smart.program.domain.notice.NoticeEntity"/>
         <!-- Drop and re-create the database schema on startup -->
         <!--
         <property name="hbm2ddl.auto">update</property>
