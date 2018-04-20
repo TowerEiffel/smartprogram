@@ -22,6 +22,7 @@ public class HomePageServiceImpl implements HomePageService {
 
     /**
      * 获取首页信息
+     *
      * @return
      * @throws Exception
      */

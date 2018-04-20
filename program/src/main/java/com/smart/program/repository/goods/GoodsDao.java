@@ -1,6 +1,6 @@
-package com.smart.program.repository;
+package com.smart.program.repository.goods;
 
-import com.smart.program.domain.GoodsEntity;
+import com.smart.program.domain.goods.GoodsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

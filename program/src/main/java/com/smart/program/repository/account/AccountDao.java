@@ -1,7 +1,7 @@
-package com.smart.program.repository;
+package com.smart.program.repository.account;
 
-import com.smart.program.domain.AccountEntity;
-import com.smart.program.domain.HomeConfigEntity;
+
+import com.smart.program.domain.account.AccountEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
