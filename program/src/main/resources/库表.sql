@@ -1,3 +1,18 @@
+create table restaurant
+(
+   restaurant_id         bigint(20) not null comment '主键',
+   restaurant_name       varchar(11) not null comment '商店名称',
+   restaurant_img        varchar(100) not null comment '商店图片',
+   restaurant_code       varchar(20) not null comment '商店编码',
+   create_time           timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time           timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version               int not null comment '版本',
+   data_status           tinyint not null default 1 comment '数据状态:0-删除；1-正常',
+   summary				 varchar(200) comment '备注信息',
+   primary key (restaurant_id)
+);
+
+
 create table reserve
 (
    reserve_id            bigint(20) not null comment '主键',
@@ -118,9 +133,9 @@ create table order_info
 (
    order_id             bigint not null comment '主键',
    user                 bigint comment '用户微信id',
-   totalprice           decimal(2,2) comment '总计',
+   totalprice           decimal(6,2) comment '总计',
    item_id              bigint comment '订单项id',
-   pay_status           tinyint comment '支付状态（0 未支付 1已支付）',
+   pay_status           tinyint comment '支付状态（0-未支付;1-已支付;2-已取消）',
    pay_way              varchar(100) comment '支付方式（全付，代金卷，微信+优惠卷）',
    pay_time             timestamp comment '支付时间',
    table_num            int comment '桌号',
@@ -144,8 +159,8 @@ create table goods
    goods_img            varchar(200) not null comment '商品图片',
    goods_cate           bigint not null comment '商品分类',
    goods_type           varchar(50) not null default '0' comment '商品类型（0 单品，1 规格）',
-   goods_price          decimal(2,2) not null default 0.0 comment '商品价格',
-   goods_discount       decimal(2,2) not null default 0.0 comment '商品折扣',
+   goods_price          decimal(4,2) not null default 0.0 comment '商品价格',
+   goods_discount       decimal(4,2) not null default 0.0 comment '商品折扣',
    goods_status         tinyint not null default 0 comment '商品状态（0 在售  1下架）',
    goods_msg            varchar(500) comment '商品介绍',
    create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
@@ -205,7 +220,7 @@ create table account_water
    user                 bigint not null comment '用户',
    order_id             bigint,
    water_type           tinyint not null default 0 comment '流水类型(1 充值, 0消费,2代金券)',
-   water_num            decimal(2,2) not null comment '流水数量',
+   water_num            decimal(5,2) not null comment '流水数量',
    wanter_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '流水时间',
    memo                 varchar(100) comment '备注',
    create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
@@ -224,7 +239,7 @@ create table account
 (
    id                   bigint not null comment '主键',
    user                 bigint not null comment '用户',
-   account_num          decimal(2,2) not null default 0.00 comment '账户余额',
+   account_num          decimal(5,2) not null default 0.00 comment '账户余额',
    create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
    update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
    version              tinyint not null default 0 comment '版本',
@@ -244,8 +259,8 @@ create table coupon
    coupon_num           int not null comment '优惠券数量',
    coupon_type          tinyint not null default 0 comment '券类型（0优惠券 1代金券）',
    coupon_img           varchar(200) comment '卷图片',
-   coupon_size          decimal(2,2) not null comment '优惠额度',
-   coupon_condition     decimal(2,2) not null comment '优惠条件',
+   coupon_size          decimal(4,2) not null comment '优惠额度',
+   coupon_condition     decimal(4,2) not null comment '优惠条件',
    coupon_msg           varchar(500) not null comment '优惠说明',
    coupon_time          timestamp comment '优惠截止时间',
    create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
@@ -283,8 +298,8 @@ create table discount
 (
    id                   bigint not null comment '主键',
    discount_type        tinyint not null default 0 comment '类型（0 充值 1 付款）',
-   discount_condition   decimal(2,2) not null default 0.00 comment '条件',
-   discount_size        decimal(2,2) not null default 0.00 comment '额度',
+   discount_condition   decimal(4,2) not null default 0.00 comment '条件',
+   discount_size        decimal(4,2) not null default 0.00 comment '额度',
    memo                 varchar(100),
    create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
    update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
