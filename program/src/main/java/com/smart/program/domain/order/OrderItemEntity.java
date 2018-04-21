@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 /**
- * hello.activeEntity
+ * 订单详情
  * Created by baihe
  * ON 2018/4/19.
  */

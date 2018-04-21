@@ -1,3 +1,20 @@
+create table reserve
+(
+   reserve_id            bigint(20) not null comment '主键',
+   mobile                varchar(11) not null comment '联系电话',
+   reserve_time          varchar(20) not null comment '预约时间',
+   reserve_numbers       int not null comment '预约人数',
+   real_name             varchar(10) not null comment '姓名',
+   create_time           timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time           timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version               int not null comment '版本',
+   data_status           tinyint not null default 1 comment '数据状态:0-删除；1-正常',
+   summary				 varchar(200) not null comment '备注信息',
+   primary key (reserve_id)
+);
+
+
+
 create table banner
 (
    banner_id            bigint(20) not null comment '主键',

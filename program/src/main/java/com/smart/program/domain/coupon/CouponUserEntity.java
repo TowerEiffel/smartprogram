@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
- * hello.activeEntity
+ * 用户代金券
  * Created by baihe
  * ON 2018/4/19.
  */

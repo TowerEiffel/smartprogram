@@ -6,6 +6,9 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+/**
+ * banner
+ */
 @Entity
 @Table(name = "banner")
 @DynamicInsert

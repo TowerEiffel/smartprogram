@@ -3,6 +3,7 @@ package com.smart.program.idwork;
 import com.google.common.base.Preconditions;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,6 +30,7 @@ import java.util.Date;
  * @author gaohongtao
  */
 @Slf4j
+@Component
 public class DefaultIdWorker implements IdWorker {
 
     public static final long EPOCH;

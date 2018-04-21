@@ -68,6 +68,7 @@
         <mapping class="hello.activeEntity.SharePopupEntity"/>
         <mapping class="com.smart.program.domain.banner.BannerEntity$BannerEntity"/>
         <mapping class="com.smart.program.domain.notice.NoticeEntity"/>
+        <mapping class="com.smart.program.domain.reserve.ReserveEntity"/>
         <!-- Drop and re-create the database schema on startup -->
         <!--
         <property name="hbm2ddl.auto">update</property>
