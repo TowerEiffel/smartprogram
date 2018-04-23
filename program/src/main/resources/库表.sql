@@ -1,3 +1,16 @@
+create table recharge_package
+(
+   package_id        	 bigint(20) not null comment '主键',
+   package_name      	 varchar(11) not null comment '套餐名称',
+   recharge_money        decimal(10,2) not null comment '充值金额',
+   pay_money       		 decimal(10,2) not null comment '支付金额',
+   create_time           timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time           timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version               int not null comment '版本',
+   data_status           tinyint not null default 1 comment '数据状态:0-删除；1-正常',
+   primary key (package_id)
+);
+
 create table restaurant
 (
    restaurant_id         bigint(20) not null comment '主键',
@@ -111,9 +124,9 @@ create table order_item
    goods_type           varchar(50) not null comment '商品类型（例如：中份，微辣）',
    goods_name           varchar(100) not null comment '商品名称',
    goods_num            int not null comment '商品数量',
-   goods_price          decimal(2,2) not null comment '商品价格',
-   real_price           decimal(2,2) not null comment '实际价格',
-   subtotal             decimal(2,2) not null comment '小计',
+   goods_price          decimal(10,2) not null comment '商品价格',
+   real_price           decimal(10,2) not null comment '实际价格',
+   subtotal             decimal(10,2) not null comment '小计',
    order_type           tinyint not null default 0 comment '订单类型（1预约，0店中，2外卖）',
    pay_time             timestamp comment '支付时间',
    create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
