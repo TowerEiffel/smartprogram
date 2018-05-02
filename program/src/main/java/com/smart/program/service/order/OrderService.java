@@ -1,7 +1,10 @@
 package com.smart.program.service.order;
 
 import com.smart.program.request.UserRequest;
+import com.smart.program.request.order.PlaceOrderRequest;
 import com.smart.program.response.order.OrderResponseList;
+
+import java.math.BigDecimal;
 
 public interface OrderService {
 
@@ -13,4 +16,6 @@ public interface OrderService {
      * @throws Exception
      */
     OrderResponseList queryUserOrder(UserRequest request) throws Exception;
+
+    BigDecimal placeOrder(PlaceOrderRequest request);
 }

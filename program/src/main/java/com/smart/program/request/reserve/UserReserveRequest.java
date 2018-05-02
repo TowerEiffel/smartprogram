@@ -1,21 +1,21 @@
 package com.smart.program.request.reserve;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 /**
  * 用户预约请求参数对象
  */
 public class UserReserveRequest {
 
-    @NotNull(message = "姓名必须填写")
+    @NotBlank(message = "姓名必须填写")
     private String realName;
-    @NotNull(message = "联系电话必须填写")
+    @NotBlank(message = "联系电话必须填写")
     private String mobile;
-    @NotNull(message = "用餐人数必须填写")
+    @NotBlank(message = "用餐人数必须填写")
     private Integer reserveNumbers;
-    @NotNull(message = "预定时间必须填写")
+    @NotBlank(message = "预定时间必须填写")
     private String  reserveTime;
-    @NotNull(message = "备注信息必须填写")
+    @NotBlank(message = "备注信息必须填写")
     private String summary;
 
     public UserReserveRequest() {

@@ -3,8 +3,13 @@ package com.smart.program.service.order.impl;
 import com.smart.program.domain.order.OrderInfoEntity;
 import com.smart.program.domain.order.OrderItemEntity;
 import com.smart.program.domain.restaurant.RestaurantEntity;
+import com.smart.program.idwork.IdWorker;
+import com.smart.program.repository.goods.GoodsDao;
 import com.smart.program.repository.order.OrderInfoDao;
+import com.smart.program.repository.order.OrderItemDao;
 import com.smart.program.request.UserRequest;
+import com.smart.program.request.order.OrderItemDTO;
+import com.smart.program.request.order.PlaceOrderRequest;
 import com.smart.program.response.order.OrderResponse;
 import com.smart.program.response.order.OrderResponseList;
 import com.smart.program.service.order.OrderItemService;
@@ -28,6 +33,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderInfoDao orderInfoDao;
+
+    @Autowired
+    private IdWorker idWorker;
+
+    @Autowired
+    private GoodsDao goodsDao;
+
+
+    @Autowired
+    private OrderItemDao orderItemDao;
 
     /**
      * 获取用户订单信息
@@ -91,5 +106,48 @@ public class OrderServiceImpl implements OrderService {
             orderResponses.add(orderResponse);
         }
         return orderResponses;
+    }
+
+    /**
+     * 用户下单
+     * @param request
+     * @return
+     */
+    @Override
+    public BigDecimal placeOrder(PlaceOrderRequest request) {
+        List<OrderItemDTO> orderItems = request.getOrderItems();
+        long orderId = idWorker.nextId();
+        List<OrderItemEntity> items = new ArrayList<>();
+        BigDecimal totalPrice = new BigDecimal(0);
+        //构建订单项
+        for (OrderItemDTO orderItem : orderItems) {
+            OrderItemEntity orderItemEntity = new OrderItemEntity();
+            orderItemEntity.setItemId(idWorker.nextId());
+            orderItemEntity.setOrderId(orderId);
+            orderItemEntity.setGoodsId(orderItem.getGoodsId());
+            orderItemEntity.setGoodsName(orderItem.getGoodsName());
+            orderItemEntity.setGoodsNum(orderItem.getGoodsNum());
+            orderItemEntity.setGoodsPrice(orderItem.getGoodsPrice());
+            BigDecimal realPrice = orderItem.getRealPrice();
+            Integer goodsNum = orderItem.getGoodsNum();
+            BigDecimal multiply = realPrice.multiply(new BigDecimal(goodsNum));
+            orderItemEntity.setRealPrice(realPrice);
+            orderItemEntity.setSubtotal(multiply);
+            orderItemEntity.setOrderType((byte)0);
+            items.add(orderItemEntity);
+            totalPrice.add(multiply);
+        }
+        //处理实际支付价格 ---未确定做不做
+        //构建订单
+        OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
+        orderInfoEntity.setOrderId(orderId);
+        orderInfoEntity.setUser(request.getUserId());
+        orderInfoEntity.setTotalprice(totalPrice);
+        orderInfoEntity.setPayStatus((byte)0);
+        orderInfoEntity.setMemo(request.getMemo());
+        //保存数据
+        orderItemDao.saveAll(items);
+        orderInfoDao.saveAndFlush(orderInfoEntity);
+        return totalPrice;
     }
 }
