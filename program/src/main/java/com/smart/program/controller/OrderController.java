@@ -3,8 +3,11 @@ package com.smart.program.controller;
 import com.smart.program.common.ErrorConstant;
 import com.smart.program.request.UserRequest;
 import com.smart.program.request.order.PlaceOrderRequest;
+import com.smart.program.request.order.QueryOrderDetailRequest;
 import com.smart.program.response.ResponseVO;
+import com.smart.program.response.order.OrderDetailResponseList;
 import com.smart.program.response.order.OrderResponseList;
+import com.smart.program.service.order.OrderItemService;
 import com.smart.program.service.order.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private OrderItemService orderItemService;
+
     /**
      * 获取订单信息
      *
@@ -38,6 +44,25 @@ public class OrderController {
             responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG, orderResponseList);
         } catch (Exception e) {
             log.error("OrderController queryUserOrder -> {} Exception \n", request.toString(), e);
+            responseVO.setResult(ErrorConstant.ERROR_CODE, ErrorConstant.ERROR_MSG);
+        }
+        return responseVO;
+    }
+
+    /**
+     * 获取订单详情信息
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(path = "/queryOrderDetail", method = RequestMethod.POST)
+    public ResponseVO<OrderDetailResponseList> queryOrderDetail(@RequestBody @Valid QueryOrderDetailRequest request) {
+        ResponseVO<OrderDetailResponseList> responseVO = new ResponseVO<>();
+        try {
+            OrderDetailResponseList orderDetailResponse = orderItemService.queryOrderDetail(request);
+            responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG, orderDetailResponse);
+        } catch (Exception e) {
+            log.error("OrderController queryOrderDetail request -> {} Exception \n", request.toString(), e);
             responseVO.setResult(ErrorConstant.ERROR_CODE, ErrorConstant.ERROR_MSG);
         }
         return responseVO;

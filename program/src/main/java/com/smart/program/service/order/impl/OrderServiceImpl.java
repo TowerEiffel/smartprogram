@@ -109,6 +109,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
+     * 根据订单主键获取订单信息
+     *
+     * @param orderId
+     * @return
+     * @throws Exception
+     */
+    public OrderInfoEntity queryOrderInfoById(long orderId) throws Exception {
+        return orderInfoDao.findByOrderId(orderId);
+    }
+
+    /**
      * 用户下单
      * @param request
      * @return

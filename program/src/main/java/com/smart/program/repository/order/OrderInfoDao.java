@@ -41,4 +41,14 @@ public interface OrderInfoDao extends JpaRepository<OrderInfoEntity, Long> {
      */
     @Query(value = "select order from OrderInfoEntity order where order.user = :#{#request.userId} and order.payStatus = '2' and order.dataStatus = '1'")
     List<OrderInfoEntity> findCancelOrderByUserId(@Param("request") UserRequest request) throws Exception;
+
+    /**
+     * 根据
+     *
+     * @param orderId
+     * @return
+     * @throws Exception
+     */
+    @Query(value = "select orderInfo from OrderInfoEntity orderInfo where orderInfo.orderId = :orderId and orderInfo.dataStatus = '1'")
+    OrderInfoEntity findByOrderId(@Param("orderId") Long orderId) throws Exception;
 }
