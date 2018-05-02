@@ -8,16 +8,16 @@ import javax.validation.constraints.NotNull;
 public class UserRequest {
 
     @NotNull(message = "请登录")
-    private Long userId;
+    private String userId;
 
     public UserRequest() {
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -1,21 +1,22 @@
 package com.smart.program.request.reserve;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  * 用户预约请求参数对象
  */
 public class UserReserveRequest {
 
-    @NotBlank(message = "姓名必须填写")
+    @NotNull(message = "姓名必须填写")
     private String realName;
-    @NotBlank(message = "联系电话必须填写")
+    @NotNull(message = "联系电话必须填写")
     private String mobile;
-    @NotBlank(message = "用餐人数必须填写")
+    @NotNull(message = "用餐人数必须填写")
     private Integer reserveNumbers;
-    @NotBlank(message = "预定时间必须填写")
-    private String  reserveTime;
-    @NotBlank(message = "备注信息必须填写")
+    @NotNull(message = "预定时间必须填写")
+    private String  currentTime;
+    @NotNull(message = "预定时间必须填写")
+    private String currentDate;
     private String summary;
 
     public UserReserveRequest() {
@@ -45,12 +46,20 @@ public class UserReserveRequest {
         this.reserveNumbers = reserveNumbers;
     }
 
-    public String getReserveTime() {
-        return reserveTime;
+    public String getCurrentTime() {
+        return currentTime;
     }
 
-    public void setReserveTime(String reserveTime) {
-        this.reserveTime = reserveTime;
+    public void setCurrentTime(String currentTime) {
+        this.currentTime = currentTime;
+    }
+
+    public String getCurrentDate() {
+        return currentDate;
+    }
+
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
     }
 
     public String getSummary() {
@@ -67,7 +76,8 @@ public class UserReserveRequest {
                 "realName='" + realName + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", reserveNumbers=" + reserveNumbers +
-                ", reserveTime='" + reserveTime + '\'' +
+                ", currentTime='" + currentTime + '\'' +
+                ", currentDate='" + currentDate + '\'' +
                 ", summary='" + summary + '\'' +
                 '}';
     }

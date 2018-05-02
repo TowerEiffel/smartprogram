@@ -4,36 +4,36 @@ import java.util.List;
 
 public class OrderResponseList {
 
-    private List<OrderResponse> unPayResponses;
+    private List<OrderResponse> pay;
 
-    private List<OrderResponse> payResponses;
+    private List<OrderResponse> finish;
 
-    private List<OrderResponse> cancelResponses;
+    private List<OrderResponse> cancel;
 
     public OrderResponseList() {
     }
 
-    public List<OrderResponse> getUnPayResponses() {
-        return unPayResponses;
+    public List<OrderResponse> getPay() {
+        return pay;
     }
 
-    public void setUnPayResponses(List<OrderResponse> unPayResponses) {
-        this.unPayResponses = unPayResponses;
+    public void setPay(List<OrderResponse> pay) {
+        this.pay = pay;
     }
 
-    public List<OrderResponse> getPayResponses() {
-        return payResponses;
+    public List<OrderResponse> getFinish() {
+        return finish;
     }
 
-    public void setPayResponses(List<OrderResponse> payResponses) {
-        this.payResponses = payResponses;
+    public void setFinish(List<OrderResponse> finish) {
+        this.finish = finish;
     }
 
-    public List<OrderResponse> getCancelResponses() {
-        return cancelResponses;
+    public List<OrderResponse> getCancel() {
+        return cancel;
     }
 
-    public void setCancelResponses(List<OrderResponse> cancelResponses) {
-        this.cancelResponses = cancelResponses;
+    public void setCancel(List<OrderResponse> cancel) {
+        this.cancel = cancel;
     }
 }

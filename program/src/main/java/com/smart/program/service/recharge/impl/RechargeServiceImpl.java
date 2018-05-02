@@ -30,6 +30,7 @@ public class RechargeServiceImpl implements RechargeService {
             rechargePackageResponse.setPackageId(rechargePackageEntity.getPackageId());
             rechargePackageResponse.setRechargeMoney(rechargePackageEntity.getRechargeMoney());
             rechargePackageResponse.setPayMoney(rechargePackageEntity.getPayMoney());
+            rechargePackageResponse.setChosen(false);
             rechargePackageResponses.add(rechargePackageResponse);
         }
         return rechargePackageResponses;

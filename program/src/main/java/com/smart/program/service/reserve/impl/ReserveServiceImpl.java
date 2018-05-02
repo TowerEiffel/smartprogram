@@ -29,7 +29,7 @@ public class ReserveServiceImpl implements ReserveService {
         reserveEntity.setRealName(request.getRealName());
         reserveEntity.setMobile(request.getMobile());
         reserveEntity.setReserveNumbers(request.getReserveNumbers());
-        reserveEntity.setReserveTime(request.getReserveTime());
+        reserveEntity.setReserveTime(request.getCurrentDate() + " " + request.getCurrentTime());
         reserveEntity.setSummary(request.getSummary());
         reserveRepository.saveAndFlush(reserveEntity);
     }

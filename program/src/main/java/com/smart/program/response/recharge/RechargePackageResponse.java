@@ -7,6 +7,7 @@ public class RechargePackageResponse {
     private Long packageId;
     private BigDecimal rechargeMoney;
     private BigDecimal payMoney;
+    private boolean chosen;
 
     public RechargePackageResponse() {
     }
@@ -33,5 +34,13 @@ public class RechargePackageResponse {
 
     public void setPayMoney(BigDecimal payMoney) {
         this.payMoney = payMoney;
+    }
+
+    public boolean getChosen() {
+        return chosen;
+    }
+
+    public void setChosen(boolean chosen) {
+        this.chosen = chosen;
     }
 }

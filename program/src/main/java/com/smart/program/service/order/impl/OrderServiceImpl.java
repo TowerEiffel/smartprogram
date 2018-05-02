@@ -59,17 +59,17 @@ public class OrderServiceImpl implements OrderService {
         //未支付订单
         List<OrderInfoEntity> unPayOrderList = orderInfoDao.findUnPayOrderByUserId(request);
         List<OrderResponse> unPayOrderResponseList = getOrderResponseList(restaurantEntity, unPayOrderList);
-        orderResponseList.setUnPayResponses(unPayOrderResponseList);
+        orderResponseList.setPay(unPayOrderResponseList);
 
         //已支付订单
         List<OrderInfoEntity> payOrderList = orderInfoDao.findPayOrderByUserId(request);
         List<OrderResponse> payOrderResponseList = getOrderResponseList(restaurantEntity, payOrderList);
-        orderResponseList.setPayResponses(payOrderResponseList);
+        orderResponseList.setFinish(payOrderResponseList);
 
         //已取消订单
         List<OrderInfoEntity> cancelOrderList = orderInfoDao.findCancelOrderByUserId(request);
         List<OrderResponse> cancelOrderResponseList = getOrderResponseList(restaurantEntity, cancelOrderList);
-        orderResponseList.setCancelResponses(cancelOrderResponseList);
+        orderResponseList.setCancel(cancelOrderResponseList);
         return orderResponseList;
     }
 
@@ -103,6 +103,7 @@ public class OrderServiceImpl implements OrderService {
             orderResponse.setMoney(money);
             orderResponse.setDelMoney(delMoney);
             orderResponse.setActMoney(actMoney);
+            orderResponse.setCreateTime(orderInfoEntity.getCreateTime());
             orderResponses.add(orderResponse);
         }
         return orderResponses;
@@ -121,6 +122,7 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 用户下单
+     *
      * @param request
      * @return
      */
@@ -144,7 +146,7 @@ public class OrderServiceImpl implements OrderService {
             BigDecimal multiply = realPrice.multiply(new BigDecimal(goodsNum));
             orderItemEntity.setRealPrice(realPrice);
             orderItemEntity.setSubtotal(multiply);
-            orderItemEntity.setOrderType((byte)0);
+            orderItemEntity.setOrderType((byte) 0);
             items.add(orderItemEntity);
             totalPrice.add(multiply);
         }
@@ -154,7 +156,7 @@ public class OrderServiceImpl implements OrderService {
         orderInfoEntity.setOrderId(orderId);
         orderInfoEntity.setUser(request.getUserId());
         orderInfoEntity.setTotalprice(totalPrice);
-        orderInfoEntity.setPayStatus((byte)0);
+        orderInfoEntity.setPayStatus((byte) 0);
         orderInfoEntity.setMemo(request.getMemo());
         //保存数据
         orderItemDao.saveAll(items);
