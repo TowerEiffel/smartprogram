@@ -16,8 +16,9 @@ public class GoodsSpec {
     }
 
 
-    public static Specification<GoodsEntity> findGoods(){
+    public static Specification<GoodsEntity> findGoods(long cateId){
         return Specifications.<GoodsEntity>and()
+                .eq("goodsCate",cateId)
                 .eq("goodsStatus",(byte)0)
                 .eq("dataStatus",(byte)0)
                 .build();

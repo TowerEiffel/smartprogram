@@ -1,9 +1,9 @@
 package com.smart.program.controller;
 
 import com.smart.program.common.ErrorConstant;
+import com.smart.program.domain.goods.GoodsDTO;
 import com.smart.program.request.dish.DishTypeRequest;
 import com.smart.program.response.ResponseVO;
-import com.smart.program.response.dish.DishListResponse;
 import com.smart.program.response.dish.DishTypeResponse;
 import com.smart.program.service.dish.DishService;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/dish")
@@ -32,7 +33,7 @@ public class DishController {
     public ResponseVO userReserve() {
         ResponseVO responseVO = new ResponseVO();
         try {
-            DishListResponse dishList = dishService.findDishList();
+            List<GoodsDTO> dishList = dishService.findDishList();
             responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG,dishList);
         } catch (Exception e) {
             log.error("ReserveController userReserve request -> {} Exception ");
