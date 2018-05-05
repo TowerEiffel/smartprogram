@@ -5,9 +5,9 @@ spring:
     hibernate.ddl-auto: none
 
   datasource:
-    url: jdbc:mysql://192.168.2.128:3306/order_foods
+    url: jdbc:mysql://192.168.57.128:3306/order_foods
     username: root
-    password: password
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   durid:

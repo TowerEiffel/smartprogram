@@ -121,7 +121,7 @@ create table home_msg
    create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
    update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
    version              tinyint not null default 0 comment '版本',
-   data_status          tinyint not null default 0 comment '数据状态'
+   data_status          tinyint not null default 0 comment '数据状态',
    primary key (id)
 );
 

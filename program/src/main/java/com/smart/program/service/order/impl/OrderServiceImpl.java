@@ -128,7 +128,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public BigDecimal placeOrder(PlaceOrderRequest request) {
-        List<OrderItemDTO> orderItems = request.getOrderItems();
+       /* List<OrderItemDTO> orderItems = request.getOrderItems();
         long orderId = idWorker.nextId();
         List<OrderItemEntity> items = new ArrayList<>();
         BigDecimal totalPrice = new BigDecimal(0);
@@ -161,6 +161,7 @@ public class OrderServiceImpl implements OrderService {
         //保存数据
         orderItemDao.saveAll(items);
         orderInfoDao.saveAndFlush(orderInfoEntity);
-        return totalPrice;
+        return totalPrice;*/
+       return null;
     }
 }

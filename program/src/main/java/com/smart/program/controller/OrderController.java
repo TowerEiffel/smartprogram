@@ -76,10 +76,11 @@ public class OrderController {
      */
     @RequestMapping(path = "/placeOrder", method = RequestMethod.POST)
     public ResponseVO<BigDecimal> placeOrder(@RequestBody @Valid PlaceOrderRequest request) {
+        System.out.println(request);
         ResponseVO<BigDecimal> responseVO = new ResponseVO<>();
         try {
-            BigDecimal price = orderService.placeOrder(request);
-            responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG, price);
+            //BigDecimal price = orderService.placeOrder(request);
+            responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG);
         } catch (Exception e) {
             log.error("OrderController queryUserOrder -> {} Exception \n", request.toString(), e);
             responseVO.setResult(ErrorConstant.ERROR_CODE, ErrorConstant.ERROR_MSG);
