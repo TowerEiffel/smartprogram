@@ -27,6 +27,6 @@ public interface RechargePackageRepository extends JpaRepository<RechargePackage
      * @return
      * @throws Exception
      */
-    @Query(value = "select package from RechargePackageEntity package where package.packageId = :package and package.dataStatus = '1'")
+    @Query(value = "select package from RechargePackageEntity package where package.packageId = :packageId and package.dataStatus = '1'")
     RechargePackageEntity queryPackageById(@Param("packageId") Long packageId) throws Exception;
 }
