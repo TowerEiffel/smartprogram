@@ -1,3 +1,17 @@
+create table recharge_order
+(
+   order_id        	 bigint(20) not null comment '主键',
+   user_id      	 varchar(11) not null comment '套餐名称',
+   recharge_money        decimal(10,2) not null comment '充值金额',
+   pay_money       		 decimal(10,2) not null comment '支付金额',
+   create_time           timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time           timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version               int not null comment '版本',
+   data_status           tinyint not null default 1 comment '数据状态:0-删除；1-正常',
+   order_status			tinyint not null default 0 comment '数据状态:0-待支付；1-已支付',
+   primary key (order_id)
+);
+
 create table recharge_package
 (
    package_id        	 bigint(20) not null comment '主键',
