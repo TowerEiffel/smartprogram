@@ -71,6 +71,7 @@
         <mapping class="com.smart.program.domain.reserve.ReserveEntity"/>
         <mapping class="com.smart.program.domain.restaurant.RestaurantEntity"/>
         <mapping class="com.smart.program.domain.recharge.RechargePackageEntity"/>
+        <mapping class="com.smart.program.domain.recharge.RechargeOrderEntity"/>
         <!-- Drop and re-create the database schema on startup -->
         <!--
         <property name="hbm2ddl.auto">update</property>
