@@ -17,4 +17,10 @@ public class ErrorConstant {
 
     public static final int PACKAGE_IS_NULL_ERROR = 3000001;
     public static final String PACKAGE_IS_NULL_ERROR_MSG = "套餐信息不存在";
+
+    public static final int AMOUNT_NOT_ENOUGH_ERROR = 3000002;
+    public static final String AMOUNT_NOT_ENOUGH_ERROR_MSG = "余额不足";
+
+    public static final int RECHARGE_ORDER_IS_NULL_ERROR = 3000003;
+    public static final String RECHARGE_ORDER_IS_NULL_ERROR_MSG = "充值订单不存在";
 }

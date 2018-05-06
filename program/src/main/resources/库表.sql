@@ -159,7 +159,7 @@ drop table if exists order_info;
 create table order_info
 (
    order_id             bigint not null comment '主键',
-   user                 bigint comment '用户微信id',
+   userId                 bigint comment '用户微信id',
    totalprice           decimal(6,2) comment '总计',
    item_id              bigint comment '订单项id',
    pay_status           tinyint comment '支付状态（0-未支付;1-已支付;2-已取消）',
@@ -244,7 +244,7 @@ drop table if exists account_water;
 create table account_water
 (
    water_id             bigint not null comment '流水id',
-   user                 bigint not null comment '用户',
+   userId                 bigint not null comment '用户',
    order_id             bigint,
    water_type           tinyint not null default 0 comment '流水类型(1 充值, 0消费,2代金券)',
    water_num            decimal(5,2) not null comment '流水数量',
@@ -265,7 +265,7 @@ drop table if exists account;
 create table account
 (
    id                   bigint not null comment '主键',
-   user                 bigint not null comment '用户',
+   userId                 bigint not null comment '用户',
    account_num          decimal(5,2) not null default 0.00 comment '账户余额',
    create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
    update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
@@ -305,7 +305,7 @@ create table coupon_user
 (
    id                   bigint not null comment '主键',
    coupon_id            bigint not null comment '券id',
-   user                 bigint not null comment '用户',
+   userId                 bigint not null comment '用户',
    page_type            tinyint default 0 comment '券类型（0 优惠卷 1代金券）',
    use_time             timestamp comment '有效时间',
    used                 tinyint not null default 0 comment '是否可用',

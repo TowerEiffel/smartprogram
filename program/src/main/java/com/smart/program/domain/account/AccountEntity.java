@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Table(name = "account")
 public class AccountEntity {
     private long id;
-    private long user;
+    private String userId;
     private BigDecimal accountNum;
     private Timestamp createTime;
     private Timestamp updateTime;
@@ -31,13 +31,13 @@ public class AccountEntity {
     }
 
     @Basic
-    @Column(name = "user")
-    public long getUser() {
-        return user;
+    @Column(name = "user_id")
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(long user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Basic

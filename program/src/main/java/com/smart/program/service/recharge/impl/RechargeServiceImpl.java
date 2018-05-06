@@ -11,6 +11,7 @@ import com.smart.program.exception.BusinessException;
 import com.smart.program.idwork.IdWorker;
 import com.smart.program.repository.recharge.RechargeOrderRepository;
 import com.smart.program.repository.recharge.RechargePackageRepository;
+import com.smart.program.request.account.UserAccountService;
 import com.smart.program.request.recharge.RechargeRequest;
 import com.smart.program.response.recharge.RechargePackageResponse;
 import com.smart.program.service.recharge.RechargeService;
@@ -40,6 +41,9 @@ public class RechargeServiceImpl implements RechargeService {
 
     @Autowired
     private RechargeOrderRepository rechargeOrderRepository;
+
+    @Autowired
+    private UserAccountService userAccountService;
 
     /**
      * 获取充值套餐
@@ -224,7 +228,8 @@ public class RechargeServiceImpl implements RechargeService {
                 updateOrderFinish(out_trade_no);
                 resXml = "<xml>" + "<return_code><![CDATA[SUCCESS]]></return_code>"
                         + "<return_msg><![CDATA[OK]]></return_msg>" + "</xml> ";
-
+                // 修改账户信息
+                updateUserAccount(Long.parseLong(out_trade_no));
             }
         } else {
             resXml = "<xml>" + "<return_code><![CDATA[FAIL]]></return_code>"
@@ -244,4 +249,15 @@ public class RechargeServiceImpl implements RechargeService {
     private void updateOrderFinish(String orderId) throws Exception {
         rechargeOrderRepository.updateOrderFinish(Long.parseLong(orderId));
     }
+
+    /**
+     * 支付成功后修改账户信息
+     *
+     * @param orderId
+     * @throws Exception
+     */
+    private void updateUserAccount(Long orderId) throws Exception {
+        userAccountService.updateUserAccount(orderId);
+    }
+
 }

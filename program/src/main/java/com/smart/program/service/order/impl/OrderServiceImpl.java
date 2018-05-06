@@ -154,7 +154,7 @@ public class OrderServiceImpl implements OrderService {
         //构建订单
         OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
         orderInfoEntity.setOrderId(orderId);
-        orderInfoEntity.setUser(request.getUserId());
+        orderInfoEntity.setUserId(request.getUserId());
         orderInfoEntity.setTotalprice(totalPrice);
         orderInfoEntity.setPayStatus((byte) 0);
         orderInfoEntity.setMemo(request.getMemo());
