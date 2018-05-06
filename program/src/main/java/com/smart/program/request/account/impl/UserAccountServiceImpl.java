@@ -8,11 +8,16 @@ import com.smart.program.exception.BusinessException;
 import com.smart.program.idwork.IdWorker;
 import com.smart.program.repository.account.AccountDao;
 import com.smart.program.repository.recharge.RechargeOrderRepository;
+import com.smart.program.request.UserRequest;
 import com.smart.program.request.account.UserAccountService;
+import com.smart.program.response.account.UserAccountResponse;
+import com.smart.program.response.account.UserAccountWaterResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
@@ -29,7 +34,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     /**
      * 修改用户现金账户信息
      *
-     * @param orderId    用户主键
+     * @param orderId 用户主键
      * @throws Exception
      */
     public void updateUserAccount(Long orderId) throws Exception {
@@ -66,5 +71,35 @@ public class UserAccountServiceImpl implements UserAccountService {
         accountWaterEntity.setWaterType(waterType);
         accountWaterEntity.setUserId(userId);
         accountWaterEntity.setOrderId(orderId);
+    }
+
+    /**
+     * 获取用户现金账户余额
+     *
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    public UserAccountResponse queryUserAccount(UserRequest request) throws Exception {
+        AccountEntity accountEntity = accountDao.queryUserAccountByUserId(request.getUserId());
+        UserAccountResponse userAccountResponse = new UserAccountResponse();
+        if (accountEntity == null) {
+            userAccountResponse.setAmount(BigDecimal.ZERO);
+        } else {
+            userAccountResponse.setAmount(accountEntity.getAccountNum());
+        }
+        return userAccountResponse;
+    }
+
+    /**
+     * 查询用户现金账户流水信息
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<UserAccountWaterResponse> queryUserAccountWater(UserRequest request) throws Exception {
+        List<UserAccountWaterResponse> waterResponses = new ArrayList<>();
+        // TODO 分页获取流水信息
+        return waterResponses;
     }
 }
