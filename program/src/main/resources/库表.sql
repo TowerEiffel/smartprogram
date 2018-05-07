@@ -1,3 +1,18 @@
+create table user_info
+(
+   user_id        	 varchar(50) not null comment '主键',
+   nick_name      	 varchar(50) comment '昵称',
+   avatar_url        varchar(200)  comment '头像',
+   city       		 varchar(50)  comment '市/区',
+   country           varchar(50)  comment '国家',
+   gender            tinyint  comment '性别',
+   language         varchar(50)  comment '语言',
+   data_status       tinyint not null default 1 comment '数据状态:0-删除；1-正常',
+   province			 varchar(50)  comment '省',
+   version           int not null comment '版本',
+   primary key (user_id)
+);
+
 create table recharge_order
 (
    order_id        	 bigint(20) not null comment '主键',
