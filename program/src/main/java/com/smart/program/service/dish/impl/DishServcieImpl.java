@@ -1,9 +1,6 @@
 package com.smart.program.service.dish.impl;
 
-import com.smart.program.domain.goods.GoodsCateEntity;
-import com.smart.program.domain.goods.GoodsDTO;
-import com.smart.program.domain.goods.GoodsEntity;
-import com.smart.program.domain.goods.GoodsPropertyEntity;
+import com.smart.program.domain.goods.*;
 import com.smart.program.repository.goods.GoodsCateDao;
 import com.smart.program.repository.goods.GoodsDao;
 import com.smart.program.repository.goods.GoodsPropertyDao;
@@ -17,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class DishServcieImpl implements DishService{
@@ -57,8 +56,18 @@ public class DishServcieImpl implements DishService{
     @Override
     public DishTypeResponse goodsType(DishTypeRequest request) throws Exception {
         List<GoodsPropertyEntity> allType = goodsPropertyDao.findAll(GoodsSpec.findType(request.getGoodsId()));
+        Map<String, List<GoodsPropertyEntity>> collect = allType.stream().collect(Collectors.groupingBy(GoodsPropertyEntity::getPropertyName));
         DishTypeResponse dishTypeResponse = new DishTypeResponse();
-        dishTypeResponse.setTypes(allType);
+        List<TypeDTO> objects = new ArrayList<>();
+        collect.forEach((key,val)->{
+            TypeDTO typeDTO = new TypeDTO();
+            typeDTO.setGoodsId(request.getGoodsId());
+            typeDTO.setTypeName(key);
+            List<String> collect1 = val.stream().map(GoodsPropertyEntity::getPropertyMsg).collect(Collectors.toList());
+            typeDTO.setTypeMsg(collect1);
+            objects.add(typeDTO);
+        });
+        dishTypeResponse.setTypes(objects);
         return dishTypeResponse;
     }
 }
