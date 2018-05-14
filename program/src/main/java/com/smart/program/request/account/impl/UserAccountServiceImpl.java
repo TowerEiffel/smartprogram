@@ -7,6 +7,7 @@ import com.smart.program.domain.recharge.RechargeOrderEntity;
 import com.smart.program.exception.BusinessException;
 import com.smart.program.idwork.IdWorker;
 import com.smart.program.repository.account.AccountDao;
+import com.smart.program.repository.account.AccountWaterDao;
 import com.smart.program.repository.recharge.RechargeOrderRepository;
 import com.smart.program.request.UserRequest;
 import com.smart.program.request.account.UserAccountService;
@@ -30,6 +31,9 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Autowired
     private RechargeOrderRepository rechargeOrderRepository;
+
+    @Autowired
+    private AccountWaterDao accountWaterDao;
 
     /**
      * 修改用户现金账户信息
@@ -99,7 +103,15 @@ public class UserAccountServiceImpl implements UserAccountService {
      */
     public List<UserAccountWaterResponse> queryUserAccountWater(UserRequest request) throws Exception {
         List<UserAccountWaterResponse> waterResponses = new ArrayList<>();
-        // TODO 分页获取流水信息
+        // 分页获取流水信息
+        List<AccountWaterEntity> accountWaterEntities = accountWaterDao.queryUserAccountWaterByUserId(request);
+        for (AccountWaterEntity accountWaterEntity : accountWaterEntities) {
+            UserAccountWaterResponse userAccountWaterResponse = new UserAccountWaterResponse();
+            userAccountWaterResponse.setWaterType(accountWaterEntity.getWaterType());
+            userAccountWaterResponse.setWaterNum(accountWaterEntity.getWaterNum());
+            userAccountWaterResponse.setWaterTime(accountWaterEntity.getWanterTime());
+            waterResponses.add(userAccountWaterResponse);
+        }
         return waterResponses;
     }
 }
