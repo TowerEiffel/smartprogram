@@ -84,13 +84,14 @@ public class RechargeServiceImpl implements RechargeService {
             if (null == rechargeOrderEntity) {
                 throw new BusinessException(ErrorConstant.PACKAGE_IS_NULL_ERROR, ErrorConstant.PACKAGE_IS_NULL_ERROR_MSG);
             }
-            fee = rechargeOrderEntity.getPayMoney();
-            rechargeOrderEntity.setRechargeMoney(rechargeOrderEntity.getRechargeMoney());
+            fee = rechargePackageEntity.getPayMoney();
+            rechargeOrderEntity.setRechargeMoney(rechargePackageEntity.getRechargeMoney());
         } else {
             fee = request.getRechargeMoney();
             rechargeOrderEntity.setRechargeMoney(fee);
         }
         rechargeOrderEntity.setPayMoney(fee);
+        rechargeOrderEntity.setIsPackage(request.getIsPackage());
         // 新增充值信息至订单表
         rechargeOrderRepository.saveAndFlush(rechargeOrderEntity);
 

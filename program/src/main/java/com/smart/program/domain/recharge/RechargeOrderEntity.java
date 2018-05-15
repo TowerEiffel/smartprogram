@@ -16,6 +16,7 @@ public class RechargeOrderEntity {
     private int version;
     private byte dataStatus;
     private byte orderStatus;
+    private byte isPackage;
 
     @Id
     @Column(name = "order_id")
@@ -105,5 +106,15 @@ public class RechargeOrderEntity {
 
     public void setOrderStatus(byte orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    @Basic
+    @Column(name = "is_package")
+    public byte getIsPackage() {
+        return isPackage;
+    }
+
+    public void setIsPackage(byte isPackage) {
+        this.isPackage = isPackage;
     }
 }
