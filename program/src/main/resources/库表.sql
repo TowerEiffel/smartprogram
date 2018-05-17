@@ -16,7 +16,7 @@ create table user_info
 create table recharge_order
 (
    order_id        	 bigint(20) not null comment '主键',
-   user_id      	 varchar(11) not null comment '套餐名称',
+   user_id      	    varchar(50) not null comment '用户主键',
    recharge_money        decimal(10,2) not null comment '充值金额',
    pay_money       		 decimal(10,2) not null comment '支付金额',
    create_time           timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
@@ -174,7 +174,7 @@ drop table if exists order_info;
 create table order_info
 (
    order_id             bigint not null comment '主键',
-   userId                 bigint comment '用户微信id',
+   user_id              VARCHAR(50) comment '用户微信id',
    totalprice           decimal(6,2) comment '总计',
    item_id              bigint comment '订单项id',
    pay_status           tinyint comment '支付状态（0-未支付;1-已支付;2-已取消）',
@@ -259,7 +259,7 @@ drop table if exists account_water;
 create table account_water
 (
    water_id             bigint not null comment '流水id',
-   userId                 bigint not null comment '用户',
+   user_id              VARCHAR(50) not null comment '用户',
    order_id             bigint,
    water_type           tinyint not null default 0 comment '流水类型(1 充值, 0消费,2代金券)',
    water_num            decimal(5,2) not null comment '流水数量',
@@ -301,6 +301,7 @@ create table coupon
    coupon_num           int not null comment '优惠券数量',
    coupon_type          tinyint not null default 0 comment '券类型（0优惠券 1代金券）',
    coupon_img           varchar(200) comment '卷图片',
+   coupon_name           varchar(200) comment '卷名称',
    coupon_size          decimal(4,2) not null comment '优惠额度',
    coupon_condition     decimal(4,2) not null comment '优惠条件',
    coupon_msg           varchar(500) not null comment '优惠说明',
@@ -320,7 +321,7 @@ create table coupon_user
 (
    id                   bigint not null comment '主键',
    coupon_id            bigint not null comment '券id',
-   userId                 bigint not null comment '用户',
+   user_id              VARCHAR(50) not null comment '用户主键',
    page_type            tinyint default 0 comment '券类型（0 优惠卷 1代金券）',
    use_time             timestamp comment '有效时间',
    used                 tinyint not null default 0 comment '是否可用',

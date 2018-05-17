@@ -24,6 +24,7 @@ public class CouponEntity {
     private Timestamp updateTime;
     private byte version;
     private byte dataStatus;
+    private String couponName;
 
     @Id
     @Column(name = "id")
@@ -145,4 +146,13 @@ public class CouponEntity {
         this.dataStatus = dataStatus;
     }
 
+    @Basic
+    @Column(name = "coupon_name")
+    public String getCouponName() {
+        return couponName;
+    }
+
+    public void setCouponName(String couponName) {
+        this.couponName = couponName;
+    }
 }

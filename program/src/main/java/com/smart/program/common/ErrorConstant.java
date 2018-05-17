@@ -23,4 +23,11 @@ public class ErrorConstant {
 
     public static final int RECHARGE_ORDER_IS_NULL_ERROR = 3000003;
     public static final String RECHARGE_ORDER_IS_NULL_ERROR_MSG = "充值订单不存在";
+
+    //代金券
+    public static final int COUPON_IS_RECEIVED_ERROR = 4000000;
+    public static final String COUPON_IS_RECEIVED_ERROR_MSG = "您已领过该代金券";
+
+    public static final int COUPON_IS_NOT_ENOUGH_ERROR = 4000001;
+    public static final String COUPON_IS_NOT_ENOUGH_ERROR_MSG = "代金券已被领完";
 }

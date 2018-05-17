@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 public class CouponUserEntity {
     private long id;
     private long couponId;
-    private long user;
+    private String userId;
     private Byte pageType;
     private Timestamp useTime;
     private byte used;
@@ -43,13 +43,13 @@ public class CouponUserEntity {
     }
 
     @Basic
-    @Column(name = "user")
-    public long getUser() {
-        return user;
+    @Column(name = "user_id")
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(long user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Basic
