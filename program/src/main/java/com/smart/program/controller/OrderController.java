@@ -79,7 +79,7 @@ public class OrderController {
         System.out.println(request);
         ResponseVO<BigDecimal> responseVO = new ResponseVO<>();
         try {
-            //BigDecimal price = orderService.placeOrder(request);
+            BigDecimal price = orderService.placeOrder(request);
             responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG);
         } catch (Exception e) {
             log.error("OrderController queryUserOrder -> {} Exception \n", request.toString(), e);
