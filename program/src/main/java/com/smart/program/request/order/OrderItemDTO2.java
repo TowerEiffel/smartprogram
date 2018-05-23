@@ -11,4 +11,5 @@ public class OrderItemDTO2 {
     private Integer num;
     private BigDecimal price;
     private String name;
+    private String memo;
 }
