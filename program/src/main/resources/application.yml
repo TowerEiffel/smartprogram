@@ -5,9 +5,9 @@ spring:
     hibernate.ddl-auto: none
 
   datasource:
-    url: jdbc:mysql://192.168.57.128:3306/order_foods
+    url: jdbc:mysql://111.231.220.190:3306/order_foods
     username: root
-    password: 123456
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   durid:
@@ -36,3 +36,9 @@ server:
   port: 8080
   servlet:
     context-path: /order-foods
+
+
+logging:
+  file: logs/zammc-server.log
+  level:
+    Root: INFO
