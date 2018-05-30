@@ -1,17 +1,18 @@
 package com.smart.program.response.coupon;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class CouponResponse {
 
     private Long couponId;
     private Byte couponType;
-    private Timestamp couponTime;
+    private LocalDate couponTime;
     private BigDecimal couponCondition;
     private String restaurantName;
     private Byte isReceive;
     private String couponName;
+    private int expire;
 
     public CouponResponse() {
     }
@@ -32,13 +33,14 @@ public class CouponResponse {
         this.couponType = couponType;
     }
 
-    public Timestamp getCouponTime() {
+    public LocalDate getCouponTime() {
         return couponTime;
     }
 
-    public void setCouponTime(Timestamp couponTime) {
+    public void setCouponTime(LocalDate couponTime) {
         this.couponTime = couponTime;
     }
+
 
     public BigDecimal getCouponCondition() {
         return couponCondition;
@@ -70,5 +72,13 @@ public class CouponResponse {
 
     public void setCouponName(String couponName) {
         this.couponName = couponName;
+    }
+
+    public int getExpire() {
+        return expire;
+    }
+
+    public void setExpire(int expire) {
+        this.expire = expire;
     }
 }

@@ -22,6 +22,7 @@ public class OrderItemEntity {
     private BigDecimal goodsPrice;
     private BigDecimal realPrice;
     private BigDecimal subtotal;
+    private String memo;
     private byte orderType;
     private Timestamp payTime;
     private Timestamp createTime;
@@ -189,4 +190,36 @@ public class OrderItemEntity {
         this.dataStatus = dataStatus;
     }
 
+    @Basic
+    @Column(name = "memo")
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderItemEntity{" +
+                "itemId=" + itemId +
+                ", orderId=" + orderId +
+                ", userId=" + userId +
+                ", goodsId=" + goodsId +
+                ", goodsType='" + goodsType + '\'' +
+                ", goodsName='" + goodsName + '\'' +
+                ", goodsNum=" + goodsNum +
+                ", goodsPrice=" + goodsPrice +
+                ", realPrice=" + realPrice +
+                ", subtotal=" + subtotal +
+                ", memo='" + memo + '\'' +
+                ", orderType=" + orderType +
+                ", payTime=" + payTime +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", version=" + version +
+                ", dataStatus=" + dataStatus +
+                '}';
+    }
 }

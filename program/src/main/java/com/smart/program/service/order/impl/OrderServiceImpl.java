@@ -9,6 +9,7 @@ import com.smart.program.repository.order.OrderInfoDao;
 import com.smart.program.repository.order.OrderItemDao;
 import com.smart.program.request.UserRequest;
 import com.smart.program.request.order.OrderItemDTO;
+import com.smart.program.request.order.OrderItemDTO2;
 import com.smart.program.request.order.PlaceOrderRequest;
 import com.smart.program.response.order.OrderResponse;
 import com.smart.program.response.order.OrderResponseList;
@@ -18,6 +19,7 @@ import com.smart.program.service.restaurant.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -128,40 +130,36 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public BigDecimal placeOrder(PlaceOrderRequest request) {
-       /* List<OrderItemDTO> orderItems = request.getOrderItems();
+        List<OrderItemDTO2> goodMsg = request.getGoodMsg();
         long orderId = idWorker.nextId();
         List<OrderItemEntity> items = new ArrayList<>();
         BigDecimal totalPrice = new BigDecimal(0);
         //构建订单项
-        for (OrderItemDTO orderItem : orderItems) {
+        for (OrderItemDTO2 orderItem : goodMsg) {
             OrderItemEntity orderItemEntity = new OrderItemEntity();
             orderItemEntity.setItemId(idWorker.nextId());
             orderItemEntity.setOrderId(orderId);
-            orderItemEntity.setGoodsId(orderItem.getGoodsId());
-            orderItemEntity.setGoodsName(orderItem.getGoodsName());
-            orderItemEntity.setGoodsNum(orderItem.getGoodsNum());
-            orderItemEntity.setGoodsPrice(orderItem.getGoodsPrice());
-            BigDecimal realPrice = orderItem.getRealPrice();
-            Integer goodsNum = orderItem.getGoodsNum();
-            BigDecimal multiply = realPrice.multiply(new BigDecimal(goodsNum));
-            orderItemEntity.setRealPrice(realPrice);
-            orderItemEntity.setSubtotal(multiply);
+            orderItemEntity.setGoodsId(orderItem.getId());
+            orderItemEntity.setGoodsName(orderItem.getName());
+            orderItemEntity.setGoodsNum(orderItem.getNum());
+            orderItemEntity.setGoodsPrice(orderItem.getPrice());
+            Integer num = orderItem.getNum();
+            BigDecimal price = orderItem.getPrice().multiply(new BigDecimal(num));
+            orderItemEntity.setRealPrice(price);
+            orderItemEntity.setSubtotal(price);
             orderItemEntity.setOrderType((byte) 0);
             items.add(orderItemEntity);
-            totalPrice.add(multiply);
+            totalPrice.add(price);
         }
-        //处理实际支付价格 ---未确定做不做
         //构建订单
         OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
         orderInfoEntity.setOrderId(orderId);
-        orderInfoEntity.setUserId(request.getUserId());
+        orderInfoEntity.setUser(request.getUserId());
         orderInfoEntity.setTotalprice(totalPrice);
         orderInfoEntity.setPayStatus((byte) 0);
-        orderInfoEntity.setMemo(request.getMemo());
         //保存数据
         orderItemDao.saveAll(items);
         orderInfoDao.saveAndFlush(orderInfoEntity);
-        return totalPrice;*/
-       return null;
+        return totalPrice;
     }
 }

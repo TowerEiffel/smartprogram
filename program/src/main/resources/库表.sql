@@ -351,3 +351,25 @@ create table discount
    primary key (id)
 );
 
+
+drop table if exists restaurant_property;
+
+/*==============================================================*/
+/* Table: restaurant_property                                   */
+/*==============================================================*/
+create table restaurant_property
+(
+   id                   bigint not null comment '主键',
+   restaurant_id        bigint not null comment '餐馆主键',
+   restaurant_property  varchar(200) not null default '0' comment '餐馆属性',
+   property_img         varchar(200) not null comment '属性图片',
+   property_msg         varchar(2000) not null comment '属性说明',
+   sort                 int comment '顺序',
+   create_time          timestamp not null default CURRENT_TIMESTAMP comment '创建时间',
+   update_time          timestamp not null default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP comment '更新时间',
+   version              tinyint not null default 0 comment '版本',
+   data_status          tinyint not null default 0 comment '数据状态',
+   primary key (id)
+);
+
+
