@@ -18,7 +18,7 @@ public interface CouponDao extends JpaRepository<CouponEntity, Long> {
      * @return
      * @throws Exception
      */
-    @Query(value = "select coupon from CouponEntity coupon where coupon.dataStatus = '1'")
+    @Query(value = "select coupon from CouponEntity coupon where coupon.dataStatus = '0'")
     List<CouponEntity> queryCouponList() throws Exception;
 
     /**

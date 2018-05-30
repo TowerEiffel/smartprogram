@@ -17,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,9 +69,17 @@ public class CouponServiceImpl implements CouponService {
         couponResponse.setRestaurantName(restaurantEntity.getRestaurantName());
         couponResponse.setCouponId(couponEntity.getId());
         couponResponse.setCouponCondition(couponEntity.getCouponCondition());
-        couponResponse.setCouponTime(couponEntity.getCouponTime());
+        LocalDate localDate = couponEntity.getCouponTime().toLocalDateTime().toLocalDate();
+        couponResponse.setCouponTime(localDate);
         couponResponse.setCouponType(couponEntity.getCouponType());
         couponResponse.setCouponName(couponEntity.getCouponName());
+        Timestamp couponTime = couponEntity.getCouponTime();
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        if (timestamp.after(couponTime)){//未过期
+            couponResponse.setExpire(0);
+        }else {//过期
+            couponResponse.setExpire(1);
+        }
         CouponUserEntity couponUserEntity = couponUserDao.queryUserCoupon(couponEntity.getId(), request.getUserId());
         couponResponse.setIsReceive(couponUserEntity == null ? (byte) 0 : (byte) 1);
         return couponResponse;
