@@ -75,7 +75,7 @@ public class CouponServiceImpl implements CouponService {
         couponResponse.setCouponName(couponEntity.getCouponName());
         Timestamp couponTime = couponEntity.getCouponTime();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        if (timestamp.after(couponTime)){//未过期
+        if (timestamp.before(couponTime)){//未过期
             couponResponse.setExpire(0);
         }else {//过期
             couponResponse.setExpire(1);

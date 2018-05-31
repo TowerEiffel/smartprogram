@@ -28,6 +28,6 @@ public interface CouponDao extends JpaRepository<CouponEntity, Long> {
      * @return
      * @throws Exception
      */
-    @Query(value = "select coupon from CouponEntity coupon where coupon.id = :couponId and coupon.dataStatus = '1'")
+    @Query(value = "select coupon from CouponEntity coupon where coupon.id = :couponId and coupon.dataStatus = '0'")
     CouponEntity queryCouponById(@Param("couponId") Long couponId) throws Exception;
 }

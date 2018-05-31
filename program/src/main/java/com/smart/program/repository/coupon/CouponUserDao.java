@@ -11,7 +11,7 @@ public interface CouponUserDao extends JpaRepository<CouponUserEntity, Long> {
 
     @Query(value = "select couponUser from CouponUserEntity couponUser where " +
             "couponUser.couponId = :couponId and couponUser.userId = :userId " +
-            "and couponUser.dataStatus = '1'")
+            "and couponUser.dataStatus = '0'")
     CouponUserEntity queryUserCoupon(@Param("couponId") Long couponId, @Param("userId") String userId) throws Exception;
 
 }
