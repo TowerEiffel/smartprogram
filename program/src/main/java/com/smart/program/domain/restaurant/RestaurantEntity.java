@@ -18,6 +18,7 @@ public class RestaurantEntity {
     private int version;
     private byte dataStatus;
     private String summary;
+    private byte status;
 
     @Id
     @Column(name = "restaurant_id")
@@ -110,4 +111,13 @@ public class RestaurantEntity {
         this.summary = summary;
     }
 
+    @Basic
+    @Column(name = "status")
+    public byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(byte status) {
+        this.status = status;
+    }
 }

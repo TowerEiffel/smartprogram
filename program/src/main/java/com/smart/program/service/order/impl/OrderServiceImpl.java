@@ -8,7 +8,6 @@ import com.smart.program.repository.goods.GoodsDao;
 import com.smart.program.repository.order.OrderInfoDao;
 import com.smart.program.repository.order.OrderItemDao;
 import com.smart.program.request.UserRequest;
-import com.smart.program.request.order.OrderItemDTO;
 import com.smart.program.request.order.OrderItemDTO2;
 import com.smart.program.request.order.PlaceOrderRequest;
 import com.smart.program.response.order.OrderResponse;
@@ -19,7 +18,6 @@ import com.smart.program.service.restaurant.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,7 +152,7 @@ public class OrderServiceImpl implements OrderService {
         //构建订单
         OrderInfoEntity orderInfoEntity = new OrderInfoEntity();
         orderInfoEntity.setOrderId(orderId);
-        orderInfoEntity.setUser(request.getUserId());
+        orderInfoEntity.setUserId(request.getUserId());
         orderInfoEntity.setTotalprice(totalPrice);
         orderInfoEntity.setPayStatus((byte) 0);
         //保存数据

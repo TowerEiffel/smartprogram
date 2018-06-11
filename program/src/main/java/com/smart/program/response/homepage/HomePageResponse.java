@@ -11,6 +11,10 @@ public class HomePageResponse {
     private List<BannerResponse> banners;
     /**活动提示*/
     private List<NoticeResponse> notices;
+    /**店家名称*/
+    private String restaurantName;
+    /**店家状态*/
+    private Byte restaurantStatus;
 
     public HomePageResponse() {
     }
@@ -29,5 +33,21 @@ public class HomePageResponse {
 
     public void setNotices(List<NoticeResponse> notices) {
         this.notices = notices;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+    public Byte getRestaurantStatus() {
+        return restaurantStatus;
+    }
+
+    public void setRestaurantStatus(Byte restaurantStatus) {
+        this.restaurantStatus = restaurantStatus;
     }
 }

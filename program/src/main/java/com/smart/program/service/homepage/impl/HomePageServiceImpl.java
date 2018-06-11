@@ -1,11 +1,13 @@
 package com.smart.program.service.homepage.impl;
 
+import com.smart.program.domain.restaurant.RestaurantEntity;
 import com.smart.program.response.banner.BannerResponse;
 import com.smart.program.response.homepage.HomePageResponse;
 import com.smart.program.response.notice.NoticeResponse;
 import com.smart.program.service.banner.BannerService;
 import com.smart.program.service.homepage.HomePageService;
 import com.smart.program.service.notice.NoticeService;
+import com.smart.program.service.restaurant.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,9 @@ public class HomePageServiceImpl implements HomePageService {
 
     @Autowired
     private NoticeService noticeService;
+
+    @Autowired
+    private RestaurantService restaurantService;
 
     /**
      * 获取首页信息
@@ -35,6 +40,10 @@ public class HomePageServiceImpl implements HomePageService {
         // 获取提示信息
         List<NoticeResponse> noticeResponses = noticeService.queryNoticeResponse();
         homePageResponse.setNotices(noticeResponses);
+        //获取店铺信息
+        RestaurantEntity restaurantEntity = restaurantService.queryRestaurant();
+        homePageResponse.setRestaurantName(restaurantEntity.getRestaurantName());
+        homePageResponse.setRestaurantStatus(restaurantEntity.getStatus());
         return homePageResponse;
     }
 }
