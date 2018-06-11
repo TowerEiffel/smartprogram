@@ -27,9 +27,8 @@ public class NoticeServiceImpl implements NoticeService {
         List<NoticeResponse> noticeResponses = new ArrayList<>();
         for (NoticeEntity noticeEntity : noticeEntities) {
             NoticeResponse noticeResponse = new NoticeResponse();
-            noticeResponse.setNoticeId(noticeEntity.getNoticeId());
-            noticeResponse.setNoticeName(noticeEntity.getNoticeName());
-            noticeResponse.setNoticeUrl(noticeEntity.getNoticeUrl());
+            noticeResponse.setNotice(noticeEntity.getNoticeName());
+            noticeResponse.setImgUrl(noticeEntity.getNoticeUrl());
             noticeResponses.add(noticeResponse);
         }
         return noticeResponses;

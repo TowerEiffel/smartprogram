@@ -1,7 +1,6 @@
 package com.smart.program.service.homepage.impl;
 
 import com.smart.program.domain.restaurant.RestaurantEntity;
-import com.smart.program.response.banner.BannerResponse;
 import com.smart.program.response.homepage.HomePageResponse;
 import com.smart.program.response.notice.NoticeResponse;
 import com.smart.program.service.banner.BannerService;
@@ -35,11 +34,11 @@ public class HomePageServiceImpl implements HomePageService {
     public HomePageResponse queryHomePage() throws Exception {
         HomePageResponse homePageResponse = new HomePageResponse();
         // 获取banner信息
-        List<BannerResponse> bannerResponses = bannerService.queryBannerResponse();
-        homePageResponse.setBanners(bannerResponses);
+        List<String> bannerResponses = bannerService.queryBannerResponse();
+        homePageResponse.setImgUrls(bannerResponses);
         // 获取提示信息
         List<NoticeResponse> noticeResponses = noticeService.queryNoticeResponse();
-        homePageResponse.setNotices(noticeResponses);
+        homePageResponse.setNotice(noticeResponses);
         //获取店铺信息
         RestaurantEntity restaurantEntity = restaurantService.queryRestaurant();
         homePageResponse.setRestaurantName(restaurantEntity.getRestaurantName());

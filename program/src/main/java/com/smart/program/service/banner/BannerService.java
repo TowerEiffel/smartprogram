@@ -1,7 +1,5 @@
 package com.smart.program.service.banner;
 
-import com.smart.program.response.banner.BannerResponse;
-
 import java.util.List;
 
 public interface BannerService {
@@ -11,5 +9,5 @@ public interface BannerService {
      * @return
      * @throws Exception
      */
-    List<BannerResponse> queryBannerResponse() throws Exception;
+    List<String> queryBannerResponse() throws Exception;
 }

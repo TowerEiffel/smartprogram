@@ -1,6 +1,5 @@
 package com.smart.program.response.homepage;
 
-import com.smart.program.response.banner.BannerResponse;
 import com.smart.program.response.notice.NoticeResponse;
 
 import java.util.List;
@@ -8,9 +7,9 @@ import java.util.List;
 public class HomePageResponse {
 
     /**banner信息*/
-    private List<BannerResponse> banners;
+    private List<String> imgUrls;
     /**活动提示*/
-    private List<NoticeResponse> notices;
+    private List<NoticeResponse> notice;
     /**店家名称*/
     private String restaurantName;
     /**店家状态*/
@@ -19,20 +18,20 @@ public class HomePageResponse {
     public HomePageResponse() {
     }
 
-    public List<BannerResponse> getBanners() {
-        return banners;
+    public List<String> getImgUrls() {
+        return imgUrls;
     }
 
-    public void setBanners(List<BannerResponse> banners) {
-        this.banners = banners;
+    public void setImgUrls(List<String> imgUrls) {
+        this.imgUrls = imgUrls;
     }
 
-    public List<NoticeResponse> getNotices() {
-        return notices;
+    public List<NoticeResponse> getNotice() {
+        return notice;
     }
 
-    public void setNotices(List<NoticeResponse> notices) {
-        this.notices = notices;
+    public void setNotice(List<NoticeResponse> notice) {
+        this.notice = notice;
     }
 
     public String getRestaurantName() {
