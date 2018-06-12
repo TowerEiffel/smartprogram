@@ -141,6 +141,7 @@ public class OrderServiceImpl implements OrderService {
             orderItemEntity.setGoodsName(orderItem.getName());
             orderItemEntity.setGoodsNum(orderItem.getNum());
             orderItemEntity.setGoodsPrice(orderItem.getPrice());
+            orderItemEntity.setGoodsType(orderItem.getMemo());
             Integer num = orderItem.getNum();
             BigDecimal price = orderItem.getPrice().multiply(new BigDecimal(num));
             orderItemEntity.setRealPrice(price);
