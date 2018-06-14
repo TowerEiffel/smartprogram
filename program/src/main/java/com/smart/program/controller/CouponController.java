@@ -65,4 +65,23 @@ public class CouponController {
         }
         return responseVO;
     }
+
+    /**
+     * 获取当前用户的代金券信息
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(path = "/queryUserCoupons")
+    public ResponseVO<List<CouponResponse>> queryUserCoupons(@RequestBody @Valid UserRequest request) {
+        ResponseVO<List<CouponResponse>> responseVO = new ResponseVO<>();
+        try {
+            List<CouponResponse> couponResponses = couponService.queryUserCoupons(request);
+            responseVO.setResult(ErrorConstant.SUCCESS_CODE, ErrorConstant.SUCCESS_MSG, couponResponses);
+        } catch (Exception e) {
+            log.error("CouponController queryUserCoupons Exception \n", e);
+            responseVO.setResult(ErrorConstant.ERROR_CODE, ErrorConstant.ERROR_MSG);
+        }
+        return responseVO;
+    }
 }

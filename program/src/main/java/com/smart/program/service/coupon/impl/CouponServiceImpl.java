@@ -75,9 +75,9 @@ public class CouponServiceImpl implements CouponService {
         couponResponse.setCouponName(couponEntity.getCouponName());
         Timestamp couponTime = couponEntity.getCouponTime();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        if (timestamp.before(couponTime)){//未过期
+        if (timestamp.before(couponTime)) {//未过期
             couponResponse.setExpire(0);
-        }else {//过期
+        } else {//过期
             couponResponse.setExpire(1);
         }
         CouponUserEntity couponUserEntity = couponUserDao.queryUserCoupon(couponEntity.getId(), request.getUserId());
@@ -110,5 +110,23 @@ public class CouponServiceImpl implements CouponService {
             couponEntity.setCouponNum(couponEntity.getCouponNum() - 1);
             couponDao.saveAndFlush(couponEntity);
         }
+    }
+
+    /**
+     * 获取用户代金券信息
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<CouponResponse> queryUserCoupons(UserRequest request) throws Exception {
+        List<CouponResponse> couponResponses = new ArrayList<>();
+        RestaurantEntity restaurantEntity = restaurantRepository.queryRestaurantEntity();
+        List<CouponUserEntity> couponUserEntities = couponUserDao.queryCouponByUser(request);
+        for (CouponUserEntity couponEntities : couponUserEntities) {
+            CouponEntity couponEntity = couponDao.queryCouponById(couponEntities.getCouponId());
+            CouponResponse couponResponse = getCouponResponse(request, restaurantEntity, couponEntity);
+            couponResponses.add(couponResponse);
+        }
+        return couponResponses;
     }
 }

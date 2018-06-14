@@ -24,4 +24,12 @@ public interface CouponService {
      * @throws Exception
      */
     void receiveCoupon(ReceiveCouponRequest request) throws Exception;
+
+    /**
+     * 获取用户代金券信息
+     *
+     * @return
+     * @throws Exception
+     */
+    List<CouponResponse> queryUserCoupons(UserRequest request) throws Exception;
 }
