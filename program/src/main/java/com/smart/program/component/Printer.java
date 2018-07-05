@@ -12,12 +12,13 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class Printer {
 
     public static final String URL = "http://api.feieyun.cn/Api/Open/";//不需要修改
@@ -45,8 +46,8 @@ public class Printer {
         //成功：{"msg":"ok","ret":0,"data":"xxxxxxx_xxxxxxxx_xxxxxxxx","serverExecutedTime":5}
         //失败：{"msg":"错误描述","ret":非0,"data":"null","serverExecutedTime":5}
 
-        String method1 = print(SN);
-        System.out.println(method1);
+//        String method1 = print(SN);
+//        System.out.println(method1);
 
 
         //===========方法2.查询某订单是否打印成功=============
@@ -146,7 +147,7 @@ public class Printer {
 
 
     //方法1
-    private static String print(String sn) {
+    public String print(String sn, String printContent) {
         //标签说明：
         //单标签:
         //"<BR>"为换行,"<CUT>"为切刀指令(主动切纸,仅限切刀打印机使用才有效果)
@@ -157,24 +158,6 @@ public class Printer {
         //拼凑订单内容时可参考如下格式
         //根据打印纸张的宽度，自行调整内容的格式，可参考下面的样例格式
 
-        String content;
-        content = "<CB>测试打印</CB><BR>";
-        content += "名称　　　　　 单价  数量 金额<BR>";
-        content += "--------------------------------<BR>";
-        content += "饭　　　　　　 1.0    1   1.0<BR>";
-        content += "炒饭　　　　　 10.0   10  10.0<BR>";
-        content += "蛋炒饭　　　　 10.0   10  100.0<BR>";
-        content += "鸡蛋炒饭　　　 100.0  1   100.0<BR>";
-        content += "番茄蛋炒饭　　 1000.0 1   100.0<BR>";
-        content += "西红柿蛋炒饭　 1000.0 1   100.0<BR>";
-        content += "西红柿鸡蛋炒饭 100.0  10  100.0<BR>";
-        content += "备注：加辣<BR>";
-        content += "--------------------------------<BR>";
-        content += "合计：xx.0元<BR>";
-        content += "送货地点：广州市南沙区xx路xx号<BR>";
-        content += "联系电话：13888888888888<BR>";
-        content += "订餐时间：2016-08-08 08:08:08<BR>";
-        content += "<QR>http://www.dzist.com</QR>";
 
         //通过POST请求，发送打印信息到服务器
         RequestConfig requestConfig = RequestConfig.custom()
@@ -194,7 +177,7 @@ public class Printer {
         nvps.add(new BasicNameValuePair("sig", signature(USER, UKEY, STIME)));
         nvps.add(new BasicNameValuePair("apiname", "Open_printMsg"));//固定值,不需要修改
         nvps.add(new BasicNameValuePair("sn", sn));
-        nvps.add(new BasicNameValuePair("content", content));
+        nvps.add(new BasicNameValuePair("content", printContent));
         nvps.add(new BasicNameValuePair("times", "1"));//打印联数
 
         CloseableHttpResponse response = null;

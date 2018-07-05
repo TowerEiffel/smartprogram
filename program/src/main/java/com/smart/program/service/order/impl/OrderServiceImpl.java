@@ -1,5 +1,6 @@
 package com.smart.program.service.order.impl;
 
+import com.smart.program.component.Printer;
 import com.smart.program.domain.order.OrderInfoEntity;
 import com.smart.program.domain.order.OrderItemEntity;
 import com.smart.program.domain.restaurant.RestaurantEntity;
@@ -19,7 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,9 +43,11 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private GoodsDao goodsDao;
 
-
     @Autowired
     private OrderItemDao orderItemDao;
+
+    @Autowired
+    private Printer printer;
 
     /**
      * 获取用户订单信息
@@ -159,6 +164,36 @@ public class OrderServiceImpl implements OrderService {
         //保存数据
         orderItemDao.saveAll(items);
         orderInfoDao.saveAndFlush(orderInfoEntity);
+
+        printer.print(Printer.SN, getPrintContent(goodMsg));
         return totalPrice;
+    }
+
+    /**
+     * 获取打印数据
+     *
+     * @param goodMsg
+     * @return
+     */
+    private String getPrintContent(List<OrderItemDTO2> goodMsg) {
+        String content;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        content = "<CB>点餐信息</CB><BR>";
+        content += "名称　　　　　 单价  数量 金额<BR>";
+        content += "--------------------------------<BR>";
+        for (OrderItemDTO2 orderItem : goodMsg) {
+            content += orderItem.getName() + "　　　　　　 " + orderItem.getPrice() + "    " + orderItem.getNum() + "   "
+                    + orderItem.getPrice().multiply(new BigDecimal(orderItem.getNum())) + "<BR>";
+            totalPrice.add(orderItem.getPrice());
+        }
+        content += "备注：<BR>";
+        content += "--------------------------------<BR>";
+        content += "合计：" + totalPrice + "元<BR>";
+        content += "餐厅：最爱妈妈菜<BR>";
+        content += "联系电话：13888888888888<BR>";
+        content += "订餐时间：" + sdf.format(new Date()) + "<BR>";
+        content += "<QR>http://www.sxmbyd.com</QR>";
+        return content;
     }
 }
