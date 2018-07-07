@@ -19,7 +19,7 @@ public interface OrderInfoDao extends JpaRepository<OrderInfoEntity, Long> {
      * @return
      * @throws Exception
      */
-    @Query(value = "select order from OrderInfoEntity order where order.userId = :#{#request.userId} and order.payStatus = '1' and order.dataStatus = '1'")
+    @Query(value = "select order from OrderInfoEntity order where order.userId = :#{#request.userId} and order.payStatus = '1' and order.dataStatus = '0'")
     List<OrderInfoEntity> findPayOrderByUserId(@Param("request") UserRequest request) throws Exception;
 
     /**
@@ -29,7 +29,7 @@ public interface OrderInfoDao extends JpaRepository<OrderInfoEntity, Long> {
      * @return
      * @throws Exception
      */
-    @Query(value = "select order from OrderInfoEntity order where order.userId = :#{#request.userId} and order.payStatus = '0' and order.dataStatus = '1'")
+    @Query(value = "select order from OrderInfoEntity order where order.userId = :#{#request.userId} and order.payStatus = '0' and order.dataStatus = '0'")
     List<OrderInfoEntity> findUnPayOrderByUserId(@Param("request") UserRequest request) throws Exception;
 
     /**
@@ -39,7 +39,7 @@ public interface OrderInfoDao extends JpaRepository<OrderInfoEntity, Long> {
      * @return
      * @throws Exception
      */
-    @Query(value = "select order from OrderInfoEntity order where order.userId = :#{#request.userId} and order.payStatus = '2' and order.dataStatus = '1'")
+    @Query(value = "select order from OrderInfoEntity order where order.userId = :#{#request.userId} and order.payStatus = '2' and order.dataStatus = '0'")
     List<OrderInfoEntity> findCancelOrderByUserId(@Param("request") UserRequest request) throws Exception;
 
     /**
@@ -49,6 +49,6 @@ public interface OrderInfoDao extends JpaRepository<OrderInfoEntity, Long> {
      * @return
      * @throws Exception
      */
-    @Query(value = "select orderInfo from OrderInfoEntity orderInfo where orderInfo.orderId = :orderId and orderInfo.dataStatus = '1'")
+    @Query(value = "select orderInfo from OrderInfoEntity orderInfo where orderInfo.orderId = :orderId and orderInfo.dataStatus = '0'")
     OrderInfoEntity findByOrderId(@Param("orderId") Long orderId) throws Exception;
 }

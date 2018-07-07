@@ -11,7 +11,7 @@ public class GoodsSpec {
     public static Specification<GoodsCateEntity> findCate(){
         return Specifications.<GoodsCateEntity>and()
                 .eq("status",(byte)0)
-                .eq("dataStatus",(byte)1)
+                .eq("dataStatus",(byte)0)
                 .build();
     }
 
@@ -20,7 +20,7 @@ public class GoodsSpec {
         return Specifications.<GoodsEntity>and()
                 .eq("goodsCate",cateId)
                 .eq("goodsStatus",(byte)0)
-                .eq("dataStatus",(byte)1)
+                .eq("dataStatus",(byte)0)
                 .build();
     }
 
@@ -28,7 +28,7 @@ public class GoodsSpec {
         return Specifications.<GoodsEntity>and()
                 .in("goodsId",ids)
                 .eq("goodsStatus",(byte)0)
-                .eq("dataStatus",(byte)1)
+                .eq("dataStatus",(byte)0)
                 .build();
     }
 
@@ -36,7 +36,7 @@ public class GoodsSpec {
         return Specifications.<GoodsPropertyEntity>and()
                 .eq("goodsId",goodsId)
                 .eq("propertyStatus",(byte)0)
-                .eq("dataStatus",(byte)1)
+                .eq("dataStatus",(byte)0)
                 .build();
     }
 }

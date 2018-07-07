@@ -19,6 +19,6 @@ public interface AccountWaterDao extends JpaRepository<AccountWaterEntity, Long>
      * @return
      * @throws Exception
      */
-    @Query(value = "select water from AccountWaterEntity water where water.userId = :#{#request.userId} and water.dataStatus = '1'")
+    @Query(value = "select water from AccountWaterEntity water where water.userId = :#{#request.userId} and water.dataStatus = '0'")
     List<AccountWaterEntity> queryUserAccountWaterByUserId(@Param("request") UserRequest request) throws Exception;
 }

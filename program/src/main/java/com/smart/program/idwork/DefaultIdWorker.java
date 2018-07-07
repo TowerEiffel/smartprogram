@@ -35,9 +35,9 @@ public class DefaultIdWorker implements IdWorker {
 
     public static final long EPOCH;
 
-    private static final long SEQUENCE_BITS = 12L;
+    private static final long SEQUENCE_BITS = 5L;
 
-    private static final long WORKER_ID_BITS = 10L;
+    private static final long WORKER_ID_BITS = 5L;
 
     private static final long SEQUENCE_MASK = (1 << SEQUENCE_BITS) - 1;
 
@@ -107,4 +107,8 @@ public class DefaultIdWorker implements IdWorker {
         return time;
     }
 
+    public static void main(String[] args) {
+        DefaultIdWorker defaultIdWorker = new DefaultIdWorker();
+        System.out.println(defaultIdWorker.nextId());
+    }
 }

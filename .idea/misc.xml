@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/program/pom.xml" />
+        <option value="$PROJECT_DIR$/program/src/main/java/com/smart/program/pom.xml" />
       </list>
     </option>
   </component>

@@ -15,7 +15,7 @@ public interface RechargeOrderRepository extends JpaRepository<RechargeOrderEnti
      * @param orderId
      * @throws Exception
      */
-    @Query(value = "update recharge_order set order_status = '1' where order_id = :orderId", nativeQuery = true)
+    @Query(value = "update recharge_order set order_status = '0' where order_id = :orderId", nativeQuery = true)
     void updateOrderFinish(@Param("orderId") Long orderId) throws Exception;
 
     /**
@@ -25,6 +25,6 @@ public interface RechargeOrderRepository extends JpaRepository<RechargeOrderEnti
      * @return
      * @throws Exception
      */
-    @Query(value = "select order from RechargeOrderEntity  order where order.orderId = :orderId and order.dataStatus = '1'")
+    @Query(value = "select order from RechargeOrderEntity  order where order.orderId = :orderId and order.dataStatus = '0'")
     RechargeOrderEntity queryOrderById(@Param("orderId") Long orderId) throws Exception;
 }

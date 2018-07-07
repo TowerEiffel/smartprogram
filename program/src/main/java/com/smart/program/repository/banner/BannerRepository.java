@@ -17,6 +17,6 @@ public interface BannerRepository extends JpaRepository<BannerEntity, Long>, Jpa
      * @return
      * @throws Exception
      */
-    @Query(value = "select banner from BannerEntity banner where banner.dataStatus = '1' and banner.bannerStatus = '1' order by banner.bannerSort")
+    @Query(value = "select banner from BannerEntity banner where banner.dataStatus = '0' and banner.bannerStatus = '1' order by banner.bannerSort")
     List<BannerEntity> queryBannerList() throws Exception;
 }

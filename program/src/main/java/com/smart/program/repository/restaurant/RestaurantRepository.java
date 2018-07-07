@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RestaurantRepository extends JpaRepository<RestaurantEntity, Long> {
 
-    @Query(value = "select restaurant from RestaurantEntity restaurant where restaurant.dataStatus = '1'")
+    @Query(value = "select restaurant from RestaurantEntity restaurant where restaurant.dataStatus = '0'")
     RestaurantEntity queryRestaurantEntity() throws Exception;
 }

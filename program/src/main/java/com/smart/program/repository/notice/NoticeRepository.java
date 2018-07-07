@@ -17,6 +17,6 @@ public interface NoticeRepository extends JpaRepository<NoticeEntity, Long>, Jpa
      * @return
      * @throws Exception
      */
-    @Query(value = "select notice from NoticeEntity notice where notice.dataStatus = '1' and notice.noticeStatus = '1' order by notice.noticeSort")
+    @Query(value = "select notice from NoticeEntity notice where notice.dataStatus = '0' and notice.noticeStatus = '1' order by notice.noticeSort")
     List<NoticeEntity> queryNoticeList() throws Exception;
 }

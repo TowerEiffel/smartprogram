@@ -18,7 +18,7 @@ public interface AccountDao extends JpaRepository<AccountEntity, Long> {
      * @return
      * @throws Exception
      */
-    @Query(value = "select account from AccountEntity account where account.userId = :userId and account.dataStatus = '1'")
+    @Query(value = "select account from AccountEntity account where account.userId = :userId and account.dataStatus = '0'")
     AccountEntity queryUserAccountByUserId(@Param("userId") String userId) throws Exception;
 
 }
